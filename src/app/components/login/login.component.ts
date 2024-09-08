@@ -19,11 +19,18 @@ export class LoginComponent {
   name: string = ''
   password: string = ''
 
+
   constructor(private loginService: LoginService) {}
+
+  ngOnInit() {
+    const subdomain = window.location.hostname.split(".")[0] === 'localhost' ? 'dev' : window.location.hostname.split(".")[0]
+    this.loginService.getBySubdomain(subdomain)
+  }
 
   changeForm() {
     this.isLoginForm = !this.isLoginForm;
   }
+
 
   login() {
     const user: User = {
