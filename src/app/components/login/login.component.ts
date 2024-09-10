@@ -26,7 +26,7 @@ export class LoginComponent {
     const subdomain = window.location.hostname.split(".")[0] === 'localhost' ? 'dev' : window.location.hostname.split(".")[0]
     this.loginService.getBySubdomain(subdomain)
   }
-
+  
   changeForm() {
     this.isLoginForm = !this.isLoginForm;
   }
