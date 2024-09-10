@@ -41,7 +41,6 @@ export class LoginService {
     const apiUrl = `${this.baseApiUrl}api/store/${subdomain}`
     this.http.get<Store>(apiUrl).subscribe({
       next: (data: Store) => {
-        console.log(data.id)
        localStorage.setItem('store_id', data.id)
       },
       error: (error) => {
