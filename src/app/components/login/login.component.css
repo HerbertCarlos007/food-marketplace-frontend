@@ -1,4 +1,7 @@
-.container {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* .container {
     width: 100vw;
     height: 100vh;
     background-image: url("https://static.vecteezy.com/ti/vetor-gratis/p3/15841928-banner-de-padrao-sem-emenda-com-comida-asiatica-comida-japonesa-paezinhos-sushi-ramen-sobre-fundo-vermelho-vetor.jpg");
@@ -63,4 +66,4 @@ label {
 .button-register {
     cursor: pointer;
     color:  #007bff;
-}
+} */

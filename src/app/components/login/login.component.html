@@ -1,35 +1,35 @@
-<div class="container">
-  <div class="container-content">
+<div class="w-screen h-screen bg-cover bg-center flex justify-center items-center" style="background-image: url('https://static.vecteezy.com/ti/vetor-gratis/p3/15841928-banner-de-padrao-sem-emenda-com-comida-asiatica-comida-japonesa-paezinhos-sushi-ramen-sobre-fundo-vermelho-vetor.jpg');">
+  <div class="w-96 p-8 bg-white rounded-lg shadow-lg">
     <div class="content">
       <form *ngIf="isLoginForm">
-        <div class="form-group">
-          <label for="email">E-mail</label>
-          <input type="email" id="email" placeholder="E-mail" name="email" [(ngModel)]="email" class="form-control" />
+        <div class="mb-5 flex flex-col">
+          <label for="email" class="text-xl mb-1 text-gray-800">E-mail</label>
+          <input type="email" id="email" placeholder="E-mail" name="email" [(ngModel)]="email" class="p-2 text-base border border-gray-300 rounded-md focus:border-blue-500 focus:ring focus:ring-blue-200 transition" />
         </div>
-        <div class="form-group">
-          <label for="password">Senha</label>
-          <input type="password" id="password" placeholder="Senha" name="password" [(ngModel)]="password" class="form-control" />
+        <div class="mb-5 flex flex-col">
+          <label for="password" class="text-xl mb-1 text-gray-800">Senha</label>
+          <input type="password" id="password" placeholder="Senha" name="password" [(ngModel)]="password" class="p-2 text-base border border-gray-300 rounded-md focus:border-blue-500 focus:ring focus:ring-blue-200 transition" />
         </div>
-        <button type="submit" class="btn-login" (click)="login()">Entrar</button>
+        <button type="submit" class="w-full p-2 bg-blue-500 text-white text-base rounded-md hover:bg-blue-600 transition mb-2" (click)="login()">Entrar</button>
         <span>Não tem conta? 
-          <span class="button-register" (click)="changeForm()">Registre-se</span>
+          <span class="text-blue-500 cursor-pointer" (click)="changeForm()">Registre-se</span>
         </span>
       </form>
 
       <form *ngIf="!isLoginForm">
-        <div class="form-group">
-          <label for="name">Nome</label>
-          <input type="text" id="name" placeholder="Nome" name="name" [(ngModel)]="name" class="form-control" />
+        <div class="mb-5 flex flex-col">
+          <label for="name" class="text-xl mb-1 text-gray-800">Nome</label>
+          <input type="text" id="name" placeholder="Nome" name="name" [(ngModel)]="name" class="p-2 text-base border border-gray-300 rounded-md focus:border-blue-500 focus:ring focus:ring-blue-200 transition" />
         </div>
-        <div class="form-group">
-          <label for="email">E-mail</label>
-          <input type="email" id="email" placeholder="E-mail" name="password" [(ngModel)]="email" class="form-control" />
+        <div class="mb-5 flex flex-col">
+          <label for="email" class="text-xl mb-1 text-gray-800">E-mail</label>
+          <input type="email" id="email" placeholder="E-mail" name="email" [(ngModel)]="email" class="p-2 text-base border border-gray-300 rounded-md focus:border-blue-500 focus:ring focus:ring-blue-200 transition" />
         </div>
-        <div class="form-group">
-          <label for="password">Senha</label>
-          <input type="password" id="password" placeholder="Senha" name="password" [(ngModel)]="password" class="form-control" />
+        <div class="mb-5 flex flex-col">
+          <label for="password" class="text-xl mb-1 text-gray-800">Senha</label>
+          <input type="password" id="password" placeholder="Senha" name="password" [(ngModel)]="password" class="p-2 text-base border border-gray-300 rounded-md focus:border-blue-500 focus:ring focus:ring-blue-200 transition" />
         </div>
-        <button type="submit" class="btn-login" (click)="register()">Registrar</button>
+        <button type="submit" class="w-full p-2 bg-blue-500 text-white text-base rounded-md hover:bg-blue-600 transition" (click)="register()">Registrar</button>
       </form>
     </div>
   </div>
