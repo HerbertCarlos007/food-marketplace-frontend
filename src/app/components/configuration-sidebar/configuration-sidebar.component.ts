@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
@@ -14,9 +14,16 @@ import { faDollarSign } from '@fortawesome/free-solid-svg-icons';
   styleUrl: './configuration-sidebar.component.css'
 })
 export class ConfigurationSidebarComponent {
+  @Output() selectedOption = new EventEmitter<string>()
+
+
   faRightFromBracket = faRightFromBracket
   faBell = faBell
   faPalette = faPalette
   faBox = faBox
   faDollarSign = faDollarSign
+
+  selectOption(option: string) {
+    this.selectedOption.emit(option)
+  }
 }
