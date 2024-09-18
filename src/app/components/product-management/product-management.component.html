@@ -2,8 +2,8 @@
     <div class="w-full flex justify-between mt-6">
       <h2 class="text-3xl">Produtos</h2>
       <div class="space-x-10 text-2xl flex">
-        <div class="w-10 text-white bg-blue-500 text-center rounded-md">
-          <fa-icon [icon]="faPlus" class="cursor-pointer"></fa-icon>
+        <div class="w-10 text-white bg-blue-500 text-center rounded-md cursor-pointer" (click)="setOpenModal()">
+          <fa-icon [icon]="faPlus" ></fa-icon>
         </div>
         <div class="w-10 text-white bg-red-500 text-center rounded-md">
           <fa-icon [icon]="faTrashCan" class="cursor-pointer"></fa-icon>
@@ -96,4 +96,8 @@
         </div>
       </div>
     </div>
+
+    <app-modal [isModalOpen]="isModalOpen" [setCloseModal]="setCloseModal">
+      sss
+    </app-modal>
 </div>
