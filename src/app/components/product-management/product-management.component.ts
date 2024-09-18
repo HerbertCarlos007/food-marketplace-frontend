@@ -3,6 +3,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
+import { faFilter } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-product-management',
@@ -15,4 +16,5 @@ export class ProductManagementComponent {
   faPlus = faPlus
   faTrashCan = faTrashCan
   faPencil = faPencil
+  faFilter = faFilter
 }
