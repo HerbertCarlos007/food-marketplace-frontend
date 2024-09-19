@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './configuration.component.css'
 })
 export class ConfigurationComponent {
-  activeComponent: string | null = null;
+  activeComponent: string = 'products'
 
   onOptionSelected(option: string) {
     this.activeComponent = option
