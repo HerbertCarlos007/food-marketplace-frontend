@@ -49,4 +49,9 @@ export class LoginService {
     });
   }
 
+  getStoreId() {
+   const storeId = localStorage.getItem('store_id')
+   console.log(storeId)
+  }
+
 }
