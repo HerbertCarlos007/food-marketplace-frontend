@@ -9,11 +9,12 @@ import { Product } from '../../interfaces/product';
 import { ProductsService } from '../../services/products.service';
 import { FormsModule } from '@angular/forms';
 import { LoginService } from '../../services/login.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-product-management',
   standalone: true,
-  imports: [FontAwesomeModule, ModalComponent, FormsModule],
+  imports: [CommonModule ,FontAwesomeModule, ModalComponent, FormsModule],
   templateUrl: './product-management.component.html',
   styleUrl: './product-management.component.css',
 })
@@ -29,7 +30,7 @@ export class ProductManagementComponent {
   imageUrl: File | null = null;
   price: number | '' = '';
   storeId: string = '';
-  status: string = '';
+  status: string = 'ativo';
   productType: string = '';
 
   products: Product[] = [];

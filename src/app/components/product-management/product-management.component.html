@@ -57,34 +57,17 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr *ngFor="let product of products">
               <td class="border border-gray-200 p-2">
                 <input type="checkbox" />
               </td>
               <td class="border border-gray-200 p-2">
-                <img src="https://via.placeholder.com/50" alt="Produto" />
+                <img [src]="product.imageUrl || 'https://via.placeholder.com/50'" class="w-11 h-11" alt="Produto" />
               </td>
-              <td class="border border-gray-200 p-2">Produto 1</td>
-              <td class="border border-gray-200 p-2">normal</td>
-              <td class="border border-gray-200 p-2">R$ 100,00</td>
-              <td class="border border-gray-200 p-2">Ativo</td>
-              <td class="border border-gray-200 p-2 space-x-2">
-                <div class="w-10 h-10 flex justify-center items-center text-white bg-blue-500 rounded-md cursor-pointer">
-                  <fa-icon [icon]="faPencil"></fa-icon>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td class="border border-gray-200 p-2">
-                <input type="checkbox" />
-              </td>
-              <td class="border border-gray-200 p-2">
-                <img src="https://via.placeholder.com/50" alt="Produto" />
-              </td>
-              <td class="border border-gray-200 p-2">Produto 2</td>
-              <td class="border border-gray-200 p-2">editavel</td>
-              <td class="border border-gray-200 p-2">R$ 150,00</td>
-              <td class="border border-gray-200 p-2">Ativo</td>
+              <td class="border border-gray-200 p-2">{{ product.name }}</td>
+              <td class="border border-gray-200 p-2">{{ product.productType }}</td>
+              <td class="border border-gray-200 p-2">R$ {{ product.price}}</td>
+              <td class="border border-gray-200 p-2">{{ product.status }}</td>
               <td class="border border-gray-200 p-2 space-x-2">
                 <div class="w-10 h-10 flex justify-center items-center text-white bg-blue-500 rounded-md cursor-pointer">
                   <fa-icon [icon]="faPencil"></fa-icon>
@@ -92,6 +75,7 @@
               </td>
             </tr>
           </tbody>
+          
         </table>
       </div>
   </div>
