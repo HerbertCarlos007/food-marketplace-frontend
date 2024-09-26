@@ -102,29 +102,29 @@
         <h2>Detalhes do Produto</h2>
       </div>
       <div class="mb-4">
-        <label class="block text-sm font-medium text-gray-600 mb-2">Produto</label>
-        <input type="text" class="border border-gray-300 rounded-lg p-3 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none transition duration-300" [(ngModel)]="name"/>
+        <label class="block text-sm font-medium text-gray-600 mb-2">Nome</label>
+        <input type="text" class="border border-gray-300 rounded-lg p-3 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none transition duration-300" placeholder="Nome" [(ngModel)]="name"/>
       </div>
       <div class="mb-4">
         <label class="block text-sm font-medium text-gray-600 mb-2">Preço</label>
-        <input type="text" class="border border-gray-300 rounded-lg p-3 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none transition duration-300" [(ngModel)]="price"/>
+        <input type="text" class="border border-gray-300 rounded-lg p-3 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none transition duration-300" placeholder="Preço" [(ngModel)]="price"/>
       </div>
       <div class="mb-4">
-        <label class="block text-sm font-medium text-gray-600 mb-2">Modelo</label>
+        <label class="block text-sm font-medium text-gray-600 mb-2">Tipo</label>
         <select class="border border-gray-300 rounded-lg p-3 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none transition duration-300" [(ngModel)]="productType">
           <option value="">Selecione</option>
           <option value="normal">normal</option>
           <option value="editavel">editável</option>
         </select>
       </div>
-      <div class="mb-4">
-        <label class="block text-sm font-medium text-gray-600 mb-2">Situação</label>
+      <!-- <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-600 mb-2">Status</label>
         <select class="border border-gray-300 rounded-lg p-3 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none transition duration-300" [(ngModel)]="status">
           <option value="">Selecione</option>
           <option value="ativo">ativo</option>
           <option value="desativado">desativado</option>
         </select>
-      </div>
+      </div> -->
       <div class="mb-4">
         <label class="block text-sm font-medium text-gray-600 mb-2">Imagem</label>
         <div class="relative">

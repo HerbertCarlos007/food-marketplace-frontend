@@ -27,15 +27,21 @@ export class ProductManagementComponent {
 
   name: string = '';
   imageUrl: File | null = null;
-  price: number = 0;
+  price: number | '' = '';
   storeId: string = '';
   status: string = '';
   productType: string = '';
+
+  products: Product[] = [];
 
   constructor(
     private productService: ProductsService,
     private loginService: LoginService
   ) {}
+
+  ngOnInit(): void {
+    this.getAllProducts()
+  }
 
   setOpenModal() {
     this.isModalOpen = !this.isModalOpen;
@@ -58,6 +64,7 @@ export class ProductManagementComponent {
       console.error('Nenhum arquivo selecionado!');
       return;
     }
+
     const formData = new FormData();
     formData.append('name', this.name);
     formData.append('price', this.price.toString());
@@ -66,5 +73,19 @@ export class ProductManagementComponent {
     formData.append('productType', this.productType);
     formData.append('imageUrl', this.imageUrl);
     this.productService.create(formData);
+  }
+
+  getAllProducts() {
+    const getStoreId = localStorage.getItem('store_id');
+    this.storeId = getStoreId !== null ? getStoreId : '';
+
+    this.productService.getAllProducts(this.storeId).subscribe({
+      next: (response) => {
+        this.products = response
+      },
+      error: (error) => {
+        console.error('Erro ao obter produtos:', error);
+      }
+    });
   }
 }

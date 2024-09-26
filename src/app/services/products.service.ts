@@ -2,22 +2,22 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environments';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Product} from '../interfaces/product'
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
   private baseApiUrl = environment.baseApiUrl;
+  token = localStorage.getItem('token'); 
 
   constructor(private http: HttpClient) {}
 
   create(formData: FormData) {
-    const token = localStorage.getItem('token'); 
-    console.log(token)
+  
 
-    // Adiciona o token no cabeçalho da requisição
     const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${this.token}`,
     });
 
     const apiUrl = `${this.baseApiUrl}api/product`;
@@ -29,4 +29,16 @@ export class ProductsService {
     });
   }
 
+  getAllProducts(storeId: string): Observable<Product[]> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.token}`,
+    });
+    const apiUrl = `${this.baseApiUrl}api/product/${storeId}`;
+    return this.http.get<Product[]>(apiUrl, { headers }).pipe(
+      map((response: Product[]) => response)
+    )
+  }
 }
+
+    
+
