@@ -101,14 +101,13 @@
           <option value="editavel">editável</option>
         </select>
       </div>
-      <!-- <div class="mb-4">
-        <label class="block text-sm font-medium text-gray-600 mb-2">Status</label>
-        <select class="border border-gray-300 rounded-lg p-3 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none transition duration-300" [(ngModel)]="status">
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-600 mb-2">Categorias</label>
+        <select class="border border-gray-300 rounded-lg p-3 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none transition duration-300" [(ngModel)]="categories">
           <option value="">Selecione</option>
-          <option value="ativo">ativo</option>
-          <option value="desativado">desativado</option>
+          <option *ngFor="let category of categoriesList" [value]="category.id">{{ category.name }}</option>
         </select>
-      </div> -->
+      </div>
       <div class="mb-4">
         <label class="block text-sm font-medium text-gray-600 mb-2">Imagem</label>
         <div class="relative">

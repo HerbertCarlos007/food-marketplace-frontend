@@ -10,6 +10,8 @@ import { ProductsService } from '../../services/products.service';
 import { FormsModule } from '@angular/forms';
 import { LoginService } from '../../services/login.service';
 import { CommonModule } from '@angular/common';
+import { CategoriesService } from '../../services/categories.service';
+import { Category } from '../../interfaces/category';
 
 @Component({
   selector: 'app-product-management',
@@ -32,16 +34,17 @@ export class ProductManagementComponent {
   storeId: string = '';
   status: string = 'ativo';
   productType: string = '';
+  categories: string = ''
 
   products: Product[] = [];
+  categoriesList: Category[] = [];
 
   constructor(
-    private productService: ProductsService,
-    private loginService: LoginService
-  ) {}
+    private productService: ProductsService, private categoryService: CategoriesService) {}
 
   ngOnInit(): void {
     this.getAllProducts()
+    this.getAllCategories()
   }
 
   setOpenModal() {
@@ -72,6 +75,7 @@ export class ProductManagementComponent {
     formData.append('storeId', this.storeId);
     formData.append('status', this.status);
     formData.append('productType', this.productType);
+    formData.append('categoryId', this.categories);
     formData.append('imageUrl', this.imageUrl);
     this.productService.create(formData);
   }
@@ -83,6 +87,20 @@ export class ProductManagementComponent {
     this.productService.getAllProducts(this.storeId).subscribe({
       next: (response) => {
         this.products = response
+      },
+      error: (error) => {
+        console.error('Erro ao obter produtos:', error);
+      }
+    });
+  }
+
+  getAllCategories() {
+    const getStoreId = localStorage.getItem('store_id');
+    this.storeId = getStoreId !== null ? getStoreId : '';
+
+    this.categoryService.getCategories().subscribe({
+      next: (response) => {
+        this.categoriesList = response
       },
       error: (error) => {
         console.error('Erro ao obter produtos:', error);
