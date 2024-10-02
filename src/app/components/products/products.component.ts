@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
 })
 export class ProductsComponent {
   storeId: string = '';
-  products: Product[] = [];
+  productsByCategory: { [key: string]: Product[] } = {};
 
   constructor(
     private productService: ProductsService,
@@ -28,12 +28,23 @@ export class ProductsComponent {
 
     this.productService.getAllProducts(this.storeId).subscribe({
       next: (response) => {
-        this.products = response
+        this.groupProductsByCategory(response);
       },
       error: (error) => {
         console.error('Erro ao obter produtos:', error);
       }
     });
+  }
+
+  groupProductsByCategory(products: Product[]) {
+    this.productsByCategory = products.reduce((acc, product) => {
+      const category = product.categoryName || 'Outros';
+      if (!acc[category]) {
+        acc[category] = [];
+      }
+      acc[category].push(product);
+      return acc;
+    }, {} as { [key: string]: Product[] });
   }
 
 }

@@ -6,4 +6,6 @@ export interface Product {
     price: number
     status: string
     productType: string
+    categoryId: string
+    categoryName: string
 }

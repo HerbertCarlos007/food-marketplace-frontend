@@ -46,6 +46,7 @@ export class ProductManagementComponent {
     this.getAllProducts()
     this.getAllCategories()
   }
+  
 
   setOpenModal() {
     this.isModalOpen = !this.isModalOpen;
@@ -78,6 +79,8 @@ export class ProductManagementComponent {
     formData.append('categoryId', this.categories);
     formData.append('imageUrl', this.imageUrl);
     this.productService.create(formData);
+
+    this.setCloseModal
   }
 
   getAllProducts() {
