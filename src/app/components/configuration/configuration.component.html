@@ -2,5 +2,7 @@
   <app-configuration-sidebar (selectedOption)="onOptionSelected($event)"></app-configuration-sidebar>
   <div class="flex-1">
     <app-product-management *ngIf="activeComponent === 'products'"></app-product-management>
+    <app-users *ngIf="activeComponent === 'users'"></app-users>
   </div>
+  
 </div>
