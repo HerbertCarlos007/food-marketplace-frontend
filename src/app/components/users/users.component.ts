@@ -3,11 +3,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 import { UsersService } from '../../services/users.service';
 import { User } from '../../interfaces/user';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-users',
   standalone: true,
-  imports: [FontAwesomeModule],
+  imports: [FontAwesomeModule, CommonModule],
   templateUrl: './users.component.html',
   styleUrl: './users.component.css',
 })
