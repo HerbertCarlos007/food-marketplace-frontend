@@ -1,14 +1,34 @@
 import { Component } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
+import { UsersService } from '../../services/users.service';
+import { User } from '../../interfaces/user';
 
 @Component({
   selector: 'app-users',
   standalone: true,
   imports: [FontAwesomeModule],
   templateUrl: './users.component.html',
-  styleUrl: './users.component.css'
+  styleUrl: './users.component.css',
 })
 export class UsersComponent {
-  faPencil = faPencil
+  faPencil = faPencil;
+  users: User[] = [];
+
+  constructor(private userService: UsersService) {}
+
+  ngOnInit(): void {
+    this.getAllUsers()
+  }
+
+  getAllUsers() {
+    this.userService.getAllUsers().subscribe({
+      next: (response) => {
+        this.users = response;
+      },
+      error: (error) => {
+        console.error('Erro ao obter usuarios:', error);
+      },
+    });
+  }
 }
