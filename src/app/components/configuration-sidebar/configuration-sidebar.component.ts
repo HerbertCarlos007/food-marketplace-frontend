@@ -5,6 +5,7 @@ import { faBell } from '@fortawesome/free-solid-svg-icons';
 import {faBox} from '@fortawesome/free-solid-svg-icons';
 import { faPalette } from '@fortawesome/free-solid-svg-icons';
 import { faDollarSign } from '@fortawesome/free-solid-svg-icons';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-configuration-sidebar',
@@ -22,6 +23,7 @@ export class ConfigurationSidebarComponent {
   faPalette = faPalette
   faBox = faBox
   faDollarSign = faDollarSign
+  faUser = faUser
 
   selectOption(option: string) {
     this.selectedOption.emit(option)
