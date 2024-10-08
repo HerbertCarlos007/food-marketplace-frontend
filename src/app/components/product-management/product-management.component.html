@@ -1,9 +1,12 @@
-<div class="w-full px-8 ">
+<div class="w-full px-8">
   <!-- Cabeçalho e botões -->
   <div class="w-full flex justify-between mt-6">
     <h2 class="text-3xl">Produtos</h2>
     <div class="space-x-10 text-2xl flex">
-      <div class="w-10 text-white bg-blue-500 text-center rounded-md cursor-pointer" (click)="setOpenModal()">
+      <div
+        class="w-10 text-white bg-blue-500 text-center rounded-md cursor-pointer"
+        (click)="setOpenModal()"
+      >
         <fa-icon [icon]="faPlus"></fa-icon>
       </div>
       <div class="w-10 text-white bg-red-500 text-center rounded-md">
@@ -14,72 +17,91 @@
 
   <!-- Área de Filtros e Tabela -->
   <div class="mt-6 w-full">
-      <!-- Área de Filtros -->
-      <div class="bg-gray-100 p-4 border border-gray-200 rounded-md">
-        <div class="flex space-x-10">
-          <div class="w-1/3">
-              <span class="text-lg">Produto</span>
-              <input class="w-full h-9 border-2 rounded-md px-2" type="text" placeholder="Produto">
-          </div>
-          <div class="w-1/3">
-              <span class="text-lg">Modelo</span>
-              <select class="w-full h-9 border-2 rounded-md px-2">
-                  <option value="">Escolher</option>
-                  <option value="normal">normal</option>
-                  <option value="editavel">editavel</option>
-              </select>
-          </div>
-          <div class="w-1/3">
-              <span class="text-lg">Situação</span>
-              <select class="w-full h-9 border-2 rounded-md px-2">
-                  <option value="">Escolher</option>
-                  <option value="ativo">ativo</option>
-                  <option value="desativado">desativado</option>
-              </select>
-          </div>
+    <!-- Área de Filtros -->
+    <div class="bg-gray-100 p-4 border border-gray-200 rounded-md">
+      <div class="flex space-x-10">
+        <div class="w-1/3">
+          <span class="text-lg">Produto</span>
+          <input
+            class="w-full h-9 border-2 rounded-md px-2"
+            type="text"
+            placeholder="Produto"
+          />
+        </div>
+        <div class="w-1/3">
+          <span class="text-lg">Modelo</span>
+          <select class="w-full h-9 border-2 rounded-md px-2">
+            <option value="">Escolher</option>
+            <option value="normal">normal</option>
+            <option value="editavel">editavel</option>
+          </select>
+        </div>
+        <div class="w-1/3">
+          <span class="text-lg">Status</span>
+          <select class="w-full h-9 border-2 rounded-md px-2">
+            <option value="">Escolher</option>
+            <option value="ativo">ativo</option>
+            <option value="desativado">desativado</option>
+          </select>
         </div>
       </div>
+    </div>
 
-      <!-- Tabela -->
-      <div class="mt-6">
-        <table class="w-full border-collapse border border-gray-200">
-          <thead>
-            <tr class="bg-gray-100 text-left">
-              <th class="border border-gray-200 p-2">
-                <input type="checkbox" />
-              </th>
-              <th class="border border-gray-200 p-2">Imagem</th>
-              <th class="border border-gray-200 p-2">Produto</th>
-              <th class="border border-gray-200 p-2">Modelo</th>
-              <th class="border border-gray-200 p-2">Preço</th>
-              <th class="border border-gray-200 p-2">Situação</th>
-              <th class="border border-gray-200 p-2">Ação</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let product of products">
-              <td class="border border-gray-200 p-2">
-                <input type="checkbox" />
-              </td>
-              <td class="border border-gray-200 p-2">
-                <img [src]="product.imageUrl || 'https://via.placeholder.com/50'" class="w-11 h-11" alt="Produto" />
-              </td>
-              <td class="border border-gray-200 p-2">{{ product.name }}</td>
-              <td class="border border-gray-200 p-2">{{ product.productType }}</td>
-              <td class="border border-gray-200 p-2">R$ {{ product.price}}</td>
-              <td class="border border-gray-200 p-2">{{ product.status }}</td>
-              <td class="border border-gray-200 p-2 space-x-2">
-                <div class="w-10 h-10 flex justify-center items-center text-white bg-blue-500 rounded-md cursor-pointer">
-                  <fa-icon [icon]="faPencil"></fa-icon>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-          
-        </table>
-      </div>
+    <!-- Tabela -->
+    <div class="mt-6">
+      <table class="w-full border-collapse border border-gray-200">
+        <thead>
+          <tr class="bg-gray-100 text-left">
+            <th class="border border-gray-200 p-2">
+              <input type="checkbox" />
+            </th>
+            <th class="border border-gray-200 p-2">Imagem</th>
+            <th class="border border-gray-200 p-2">Produto</th>
+            <th class="border border-gray-200 p-2">Modelo</th>
+            <th class="border border-gray-200 p-2">Preço</th>
+            <th class="border border-gray-200 p-2">Status</th>
+            <th class="border border-gray-200 p-2">Ação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products">
+            <td class="border border-gray-200 p-2">
+              <input type="checkbox" />
+            </td>
+            <td class="border border-gray-200 p-2">
+              <img
+                [src]="product.imageUrl || 'https://via.placeholder.com/50'"
+                class="w-11 h-11"
+                alt="Produto"
+              />
+            </td>
+            <td class="border border-gray-200 p-2">{{ product.name }}</td>
+            <td class="border border-gray-200 p-2">
+              {{ product.productType }}
+            </td>
+            <td class="border border-gray-200 p-2">R$ {{ product.price }}</td>
+            <td class="border border-gray-200 p-2">
+              <span 
+                class="px-2 py-1 rounded-full"
+                [ngClass]="{
+                  'bg-green-200 text-green-700': product.status === 'ativo',
+                  'bg-red-200 text-red-700': product.status === 'desativado'
+                }">
+                {{ product.status }}
+              </span>
+            <td class="border border-gray-200 p-2 space-x-2">
+              <div
+                class="w-10 h-10 flex justify-center items-center text-white bg-blue-500 rounded-md cursor-pointer"
+              >
+                <fa-icon [icon]="faPencil"></fa-icon>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-  
+
   <app-modal [isModalOpen]="isModalOpen" [setCloseModal]="setCloseModal">
     <div class="bg-white p-6 rounded-lg shadow-lg w-96 mx-auto">
       <div class="mb-6 text-lg font-semibold text-gray-700">
@@ -87,44 +109,93 @@
       </div>
       <div class="mb-4">
         <label class="block text-sm font-medium text-gray-600 mb-2">Nome</label>
-        <input type="text" class="border border-gray-300 rounded-lg p-3 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none transition duration-300" placeholder="Nome" [(ngModel)]="name"/>
+        <input
+          type="text"
+          class="border border-gray-300 rounded-lg p-3 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none transition duration-300"
+          placeholder="Nome"
+          [(ngModel)]="name"
+        />
       </div>
       <div class="mb-4">
-        <label class="block text-sm font-medium text-gray-600 mb-2">Preço</label>
-        <input type="text" class="border border-gray-300 rounded-lg p-3 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none transition duration-300" placeholder="Preço" [(ngModel)]="price"/>
+        <label class="block text-sm font-medium text-gray-600 mb-2"
+          >Preço</label
+        >
+        <input
+          type="text"
+          class="border border-gray-300 rounded-lg p-3 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none transition duration-300"
+          placeholder="Preço"
+          [(ngModel)]="price"
+        />
       </div>
       <div class="mb-4">
         <label class="block text-sm font-medium text-gray-600 mb-2">Tipo</label>
-        <select class="border border-gray-300 rounded-lg p-3 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none transition duration-300" [(ngModel)]="productType">
+        <select
+          class="border border-gray-300 rounded-lg p-3 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none transition duration-300"
+          [(ngModel)]="productType"
+        >
           <option value="">Selecione</option>
           <option value="normal">normal</option>
           <option value="editavel">editável</option>
         </select>
       </div>
       <div class="mb-4">
-        <label class="block text-sm font-medium text-gray-600 mb-2">Categorias</label>
-        <select class="border border-gray-300 rounded-lg p-3 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none transition duration-300" [(ngModel)]="categories">
+        <label class="block text-sm font-medium text-gray-600 mb-2"
+          >Categorias</label
+        >
+        <select
+          class="border border-gray-300 rounded-lg p-3 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none transition duration-300"
+          [(ngModel)]="categories"
+        >
           <option value="">Selecione</option>
-          <option *ngFor="let category of categoriesList" [value]="category.id">{{ category.name }}</option>
+          <option *ngFor="let category of categoriesList" [value]="category.id">
+            {{ category.name }}
+          </option>
         </select>
       </div>
       <div class="mb-4">
-        <label class="block text-sm font-medium text-gray-600 mb-2">Imagem</label>
+        <label class="block text-sm font-medium text-gray-600 mb-2"
+          >Imagem</label
+        >
         <div class="relative">
-          <input type="file" id="file-upload" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"  (change)="onFileSelected($event)"/>
-          <label for="file-upload" class="flex items-center justify-center border border-gray-300 rounded-lg p-3 w-full cursor-pointer text-gray-500 hover:bg-gray-100">
-            <svg class="w-6 h-6 mr-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-3-3m0 0l-3-3m3 3h18M3 13a4 4 0 118 0 4 4 0 018 0m-9-4h10"></path>
+          <input
+            type="file"
+            id="file-upload"
+            class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+            (change)="onFileSelected($event)"
+          />
+          <label
+            for="file-upload"
+            class="flex items-center justify-center border border-gray-300 rounded-lg p-3 w-full cursor-pointer text-gray-500 hover:bg-gray-100"
+          >
+            <svg
+              class="w-6 h-6 mr-2 text-gray-500"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M7 16l-3-3m0 0l-3-3m3 3h18M3 13a4 4 0 118 0 4 4 0 018 0m-9-4h10"
+              ></path>
             </svg>
             Selecione um arquivo
           </label>
         </div>
       </div>
       <div class="flex justify-end space-x-4">
-        <button class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-300" (click)="setCloseModal()">
+        <button
+          class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-300"
+          (click)="setCloseModal()"
+        >
           Cancelar
         </button>
-        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300" (click)="create()">
+        <button
+          class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300"
+          (click)="create()"
+        >
           Salvar
         </button>
       </div>
