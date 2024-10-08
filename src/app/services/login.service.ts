@@ -19,6 +19,7 @@ export class LoginService {
     return this.http.post<User>(apiUrl, user).subscribe({
       next: (response) => {
         localStorage.setItem('token', String(response.token));
+        localStorage.setItem('role', String(response.role));
         this.router.navigate(['/home'])
       },
       error: (error) => {

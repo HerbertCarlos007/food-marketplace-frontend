@@ -10,6 +10,7 @@ import { map, Observable } from 'rxjs';
 export class UsersService {
   private baseApiUrl = environment.baseApiUrl;
   token = localStorage.getItem('token'); 
+  role = localStorage.getItem('role') || ''
   
   constructor(private http: HttpClient) { }
 
@@ -21,5 +22,9 @@ export class UsersService {
     return this.http.get<User[]>(apiUrl, { headers }).pipe(
       map((response: User[]) => response)
     )
+  }
+
+  getUserRole(): string {
+    return this.role
   }
 }
