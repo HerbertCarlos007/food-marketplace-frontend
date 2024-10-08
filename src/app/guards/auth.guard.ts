@@ -13,16 +13,14 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-    const userRole = this.usersService.getUserRole(); // Obtenha a role do usuário
+    const userRole = this.usersService.getUserRole();
 
-    // Verifique se a role do usuário é 'Admin'
     if (userRole === 'administrador') {
       console.log('olaaa')
-      return true; // Permite o acesso
+      return true;
     }
 
-    // Se não, redireciona ou retorna false
-    this.router.navigate(['/unauthorized']); // Redireciona para uma página de não autorizado, por exemplo
+    this.router.navigate(['/unauthorized']);
     return false;
   }
 }
