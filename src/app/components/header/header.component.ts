@@ -4,6 +4,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faHouse } from '@fortawesome/free-solid-svg-icons';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
 import { UsersService } from '../../services/users.service';
 import { CommonModule } from '@angular/common';
@@ -20,6 +21,7 @@ export class HeaderComponent {
   faCartShopping = faCartShopping
   faMagnifyingGlass = faMagnifyingGlass
   faGear = faGear
+  faRightFromBracket = faRightFromBracket
   role = ''
 
   constructor(private userService: UsersService) {

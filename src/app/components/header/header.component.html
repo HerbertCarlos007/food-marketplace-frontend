@@ -14,7 +14,7 @@
         <fa-icon [icon]="faCartShopping"></fa-icon>
         Carrinho
       </span>
-      <ng-container *ngIf="role == 'administrador'">
+      <ng-container *ngIf="role === 'administrador'; else user">
         <a class="cursor-pointer flex items-center gap-1" [routerLink]="['/configuration']">
           <fa-icon [icon]="faGear"></fa-icon>
           Configurações
@@ -23,3 +23,10 @@
     </div>
   </div>
 </div>
+
+<ng-template #user>
+  <div class="cursor-pointer flex items-center gap-1">
+    <fa-icon [icon]="faRightFromBracket"></fa-icon>
+    Sair
+  </div>
+</ng-template>
