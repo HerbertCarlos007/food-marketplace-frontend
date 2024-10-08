@@ -47,7 +47,6 @@ export class ProductManagementComponent {
     this.getAllCategories()
   }
   
-
   setOpenModal() {
     this.isModalOpen = !this.isModalOpen;
   }
