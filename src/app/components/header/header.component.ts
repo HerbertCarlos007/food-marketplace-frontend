@@ -8,6 +8,7 @@ import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
 import { UsersService } from '../../services/users.service';
 import { CommonModule } from '@angular/common';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-header',
@@ -24,10 +25,12 @@ export class HeaderComponent {
   faRightFromBracket = faRightFromBracket
   role = ''
 
-  constructor(private userService: UsersService) {
+  constructor(private userService: UsersService, private loginService: LoginService) {
     this.role = this.userService.getUserRole();
   }
 
-  
+  logout() {
+    this.loginService.logout()
+  }
 
 }

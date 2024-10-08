@@ -50,6 +50,11 @@ export class LoginService {
     });
   }
 
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['/'])
+  }
+
   getStoreId() {
    const storeId = localStorage.getItem('store_id')
    console.log(storeId)

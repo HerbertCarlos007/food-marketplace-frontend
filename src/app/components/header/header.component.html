@@ -25,7 +25,7 @@
 </div>
 
 <ng-template #user>
-  <div class="cursor-pointer flex items-center gap-1">
+  <div class="cursor-pointer flex items-center gap-1" (click)="logout()">
     <fa-icon [icon]="faRightFromBracket"></fa-icon>
     Sair
   </div>
