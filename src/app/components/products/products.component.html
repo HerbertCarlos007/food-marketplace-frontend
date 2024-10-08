@@ -1,20 +1,18 @@
-<div class="w-full h-full">
-  <div class="ml-5 mt-5">
-    <div *ngFor="let category of productsByCategory | keyvalue">
-      <div class="mb-2">
-        <span class="text-2xl font-semibold">{{ category.key }}</span>
-      </div>
-      <div class="grid grid-cols-2 mb-4">
-        <div *ngFor="let product of category.value" class="h-28 border-2 rounded-md flex justify-between cursor-pointer mr-4 mt-3">
-          <div class="flex flex-col ml-2 mt-2 ">
-            <span class="font-medium">{{ product.name }}</span>
-            <span class="font-thin text-sm">3 Acompanhamentos</span>
-            <span class="font-thin text-sm">Incluso leite condensado e leite em pó</span>
-            <span class="font-semibold">R$ {{ product.price | number: '1.2-2' }}</span>
-          </div>
-          <div class="flex items-center mr-2">
-            <img class="w-24 h-24 rounded-md" [src]="product.imageUrl || 'https://via.placeholder.com/50'" alt="{{ product.name }}">
-          </div>
+<div class="ml-5 mt-5 overflow-y-auto scrollbar-hidden" style="max-height: calc(100vh - 110px);">
+  <div *ngFor="let category of productsByCategory | keyvalue">
+    <div class="mb-2">
+      <span class="text-2xl font-semibold">{{ category.key }}</span>
+    </div>
+    <div class="grid grid-cols-2 mb-4">
+      <div *ngFor="let product of category.value" class="h-28 border-2 rounded-md flex justify-between cursor-pointer mr-4 mt-3">
+        <div class="flex flex-col ml-2 mt-2">
+          <span class="font-medium">{{ product.name }}</span>
+          <span class="font-thin text-sm">3 Acompanhamentos</span>
+          <span class="font-thin text-sm">Incluso leite condensado e leite em pó</span>
+          <span class="font-semibold">R$ {{ product.price | number: '1.2-2' }}</span>
+        </div>
+        <div class="flex items-center mr-2">
+          <img class="w-24 h-24 rounded-md" [src]="product.imageUrl || 'https://via.placeholder.com/50'" alt="{{ product.name }}">
         </div>
       </div>
     </div>

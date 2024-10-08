@@ -11,3 +11,11 @@
     overflow-y: hidden;
 }
 
+/* Para ocultar a barra de rolagem padrão */
+.scrollbar-hidden {
+    scrollbar-width: thin; /* Para navegadores Firefox */
+    scrollbar-color: transparent transparent; /* Para navegadores Firefox */
+}
+
+
+

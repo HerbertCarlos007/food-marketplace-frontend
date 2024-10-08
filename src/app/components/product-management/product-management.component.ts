@@ -44,6 +44,7 @@ export class ProductManagementComponent {
 
   ngOnInit(): void {
     this.getAllProducts()
+    this.getAllCategories()
   }
   
 
@@ -95,5 +96,17 @@ export class ProductManagementComponent {
       }
     });
   }
-
+  
+  getAllCategories() {
+    const getStoreId = localStorage.getItem('store_id');
+    this.storeId = getStoreId !== null ? getStoreId : '';
+    this.categoryService.getCategories().subscribe({
+      next: (response) => {
+        this.categoriesList = response
+      },
+      error: (error) => {
+        console.error('Erro ao obter categorias:', error);
+      }
+    });
+  }
 }
