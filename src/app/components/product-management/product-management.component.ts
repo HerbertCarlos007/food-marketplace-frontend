@@ -79,7 +79,7 @@ export class ProductManagementComponent {
     formData.append('imageUrl', this.imageUrl);
     this.productService.create(formData);
 
-    this.setCloseModal
+    this.setCloseModal()
   }
 
   getAllProducts() {
