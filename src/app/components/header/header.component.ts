@@ -25,12 +25,16 @@ export class HeaderComponent {
   faRightFromBracket = faRightFromBracket
   role = ''
 
-  constructor(private userService: UsersService, private loginService: LoginService) {
+  constructor(private userService: UsersService, private loginService: LoginService,  private router: Router) {
     this.role = this.userService.getUserRole();
   }
 
   logout() {
     this.loginService.logout()
+  }
+
+  navigateToCart() {
+    this.router.navigate(['/cart'])
   }
 
 }
