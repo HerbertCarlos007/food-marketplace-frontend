@@ -25,17 +25,18 @@ export class ProductsComponent {
   getAllProducts() {
     const getStoreId = localStorage.getItem('store_id');
     this.storeId = getStoreId !== null ? getStoreId : '';
-
+  
     this.productService.getAllProducts(this.storeId).subscribe({
       next: (response) => {
-        this.groupProductsByCategory(response);
+        const activeProducts = response.filter(product => product.status === 'ativo');
+        this.groupProductsByCategory(activeProducts);
       },
       error: (error) => {
         console.error('Erro ao obter produtos:', error);
       }
     });
   }
-
+  
   groupProductsByCategory(products: Product[]) {
     this.productsByCategory = products.reduce((acc, product) => {
       const category = product.categoryName || 'Outros';
