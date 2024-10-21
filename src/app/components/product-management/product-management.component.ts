@@ -27,6 +27,7 @@ export class ProductManagementComponent {
   faFilter = faFilter;
 
   isModalOpen: boolean = false;
+  isEditMode: boolean = false
 
   name: string = '';
   imageUrl: File | null = null;
@@ -47,8 +48,24 @@ export class ProductManagementComponent {
     this.getAllCategories()
   }
   
-  setOpenModal() {
-    this.isModalOpen = !this.isModalOpen;
+  setOpenModal(isEdit: boolean = false, product?: Product) {
+    this.isModalOpen = true
+    this.isEditMode = isEdit
+
+    if(isEdit && product) {
+      this.name = product.name
+      this.price = product.price
+      this.productType = product.productType
+      this.categories = product.categoryId
+      this.imageUrl = null
+    }else {
+      this.name = ''
+      this.price = ''
+      this.productType = ''
+      this.categories = ''
+      this.imageUrl = null
+    }
+   
   }
 
   setCloseModal(): void {
@@ -80,6 +97,19 @@ export class ProductManagementComponent {
     this.productService.create(formData);
 
     this.setCloseModal()
+  }
+
+  updateProduct() {
+    // Função para atualizar o produto existente
+    const formData = new FormData();
+    formData.append('name', this.name);
+    formData.append('price', this.price.toString());
+    formData.append('productType', this.productType);
+    formData.append('status', this.status);
+    formData.append('categoryId', this.categories);
+    formData.append('imageUrl', this.imageUrl!);
+    // this.productService.update(formData); // Atualizar produto
+    this.setCloseModal();
   }
 
   getAllProducts() {

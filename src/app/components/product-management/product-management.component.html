@@ -93,7 +93,7 @@
               <div
                 class="w-10 h-10 flex justify-center items-center text-white bg-blue-500 rounded-md cursor-pointer"
               >
-                <fa-icon [icon]="faPencil"></fa-icon>
+                <fa-icon [icon]="faPencil" (click)="setOpenModal(true, product)"></fa-icon>
               </div>
             </td>
           </tr>
@@ -105,47 +105,37 @@
   <app-modal [isModalOpen]="isModalOpen" [setCloseModal]="setCloseModal">
     <div class="bg-white p-6 rounded-lg shadow-lg w-96 mx-auto">
       <div class="mb-6 text-lg font-semibold text-gray-700">
-        <h2>Detalhes do Produto</h2>
+        <h2>{{ isEditMode ? 'Editar Produto' : 'Criar Produto' }}</h2>
       </div>
       <div class="mb-4">
         <label class="block text-sm font-medium text-gray-600 mb-2">Nome</label>
         <input
           type="text"
-          class="border border-gray-300 rounded-lg p-3 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none transition duration-300"
+          class="border border-gray-300 rounded-lg p-3 w-full"
           placeholder="Nome"
           [(ngModel)]="name"
         />
       </div>
       <div class="mb-4">
-        <label class="block text-sm font-medium text-gray-600 mb-2"
-          >Preço</label
-        >
+        <label class="block text-sm font-medium text-gray-600 mb-2">Preço</label>
         <input
           type="text"
-          class="border border-gray-300 rounded-lg p-3 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none transition duration-300"
+          class="border border-gray-300 rounded-lg p-3 w-full"
           placeholder="Preço"
           [(ngModel)]="price"
         />
       </div>
       <div class="mb-4">
         <label class="block text-sm font-medium text-gray-600 mb-2">Tipo</label>
-        <select
-          class="border border-gray-300 rounded-lg p-3 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none transition duration-300"
-          [(ngModel)]="productType"
-        >
+        <select class="border border-gray-300 rounded-lg p-3 w-full" [(ngModel)]="productType">
           <option value="">Selecione</option>
           <option value="normal">normal</option>
           <option value="editavel">editável</option>
         </select>
       </div>
       <div class="mb-4">
-        <label class="block text-sm font-medium text-gray-600 mb-2"
-          >Categorias</label
-        >
-        <select
-          class="border border-gray-300 rounded-lg p-3 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none transition duration-300"
-          [(ngModel)]="categories"
-        >
+        <label class="block text-sm font-medium text-gray-600 mb-2">Categorias</label>
+        <select class="border border-gray-300 rounded-lg p-3 w-full" [(ngModel)]="categories">
           <option value="">Selecione</option>
           <option *ngFor="let category of categoriesList" [value]="category.id">
             {{ category.name }}
@@ -153,50 +143,21 @@
         </select>
       </div>
       <div class="mb-4">
-        <label class="block text-sm font-medium text-gray-600 mb-2"
-          >Imagem</label
-        >
+        <label class="block text-sm font-medium text-gray-600 mb-2">Imagem</label>
         <div class="relative">
-          <input
-            type="file"
-            id="file-upload"
-            class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-            (change)="onFileSelected($event)"
-          />
+          <input type="file" id="file-upload" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" (change)="onFileSelected($event)" />
           <label
             for="file-upload"
-            class="flex items-center justify-center border border-gray-300 rounded-lg p-3 w-full cursor-pointer text-gray-500 hover:bg-gray-100"
+            class="flex items-center justify-center border border-gray-300 rounded-lg p-3 w-full cursor-pointer text-gray-500"
           >
-            <svg
-              class="w-6 h-6 mr-2 text-gray-500"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M7 16l-3-3m0 0l-3-3m3 3h18M3 13a4 4 0 118 0 4 4 0 018 0m-9-4h10"
-              ></path>
-            </svg>
             Selecione um arquivo
           </label>
         </div>
       </div>
       <div class="flex justify-end space-x-4">
-        <button
-          class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-300"
-          (click)="setCloseModal()"
-        >
-          Cancelar
-        </button>
-        <button
-          class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300"
-          (click)="create()"
-        >
-          Salvar
+        <button class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600" (click)="setCloseModal()">Cancelar</button>
+        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600" (click)="isEditMode ? updateProduct() : create()">
+          {{ isEditMode ? 'Atualizar' : 'Salvar' }}
         </button>
       </div>
     </div>
