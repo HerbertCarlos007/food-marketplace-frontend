@@ -1,18 +1,18 @@
-<div class="ml-5 mt-5 overflow-y-auto scrollbar-hidden" style="max-height: calc(100vh - 110px);">
+<div class="ml-4 mt-5 overflow-y-auto scrollbar-hidden" style="max-height: calc(100vh - 110px);">
   <div *ngFor="let category of productsByCategory | keyvalue">
     <div class="mb-2">
       <span class="text-2xl font-semibold">{{ category.key }}</span>
     </div>
-    <div class="grid grid-cols-2 mb-4">
-      <div *ngFor="let product of category.value" class="h-28 border-2 rounded-md flex justify-between cursor-pointer mr-4 mt-3">
-        <div class="flex flex-col ml-2 mt-2">
-          <span class="font-medium">{{ product.name }}</span>
-          <span class="font-thin text-sm">3 Acompanhamentos</span>
-          <span class="font-thin text-sm">Incluso leite condensado e leite em pó</span>
-          <span class="font-semibold">R$ {{ product.price | number: '1.2-2' }}</span>
+    <div class="grid grid-cols-3 gap-3 mb-4 mr-3">
+      <div *ngFor="let product of category.value" class="p-3 bg-gray-200 border border-gray-300 shadow-lg rounded-md flex items-center hover:shadow-xl transition-shadow cursor-pointer">
+        <div class="w-16 h-16 ml-1 bg-gray-300 rounded-md flex-shrink-0">
+          <img class="w-full h-full object-cover rounded-md" [src]="product.imageUrl || 'https://via.placeholder.com/50'" alt="{{ product.name }}">
         </div>
-        <div class="flex items-center mr-2">
-          <img class="w-24 h-24 rounded-md" [src]="product.imageUrl || 'https://via.placeholder.com/50'" alt="{{ product.name }}">
+        <div class="flex flex-col justify-between flex-grow ml-3">
+          <span class="font-medium text-gray-900">{{ product.name }}</span>
+          <span class="text-xs text-gray-600">3 Acompanhamentos</span>
+          <span class="text-xs text-gray-600">Incluso leite condensado e leite em pó</span>
+          <span class="text-lg font-semibold text-green-600">R$ {{ product.price | number: '1.2-2' }}</span>
         </div>
       </div>
     </div>
