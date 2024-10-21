@@ -38,6 +38,20 @@ export class ProductsService {
       map((response: Product[]) => response)
     )
   }
+
+  update(formData: FormData, id: string) {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.token}`,
+    });
+
+    const apiUrl = `${this.baseApiUrl}api/product/${id}`;
+    return this.http.put<Product>(apiUrl, formData, { headers }).subscribe({
+      next: (response) => {},
+      error: (error) => {
+        console.error('register failed:', error);
+      },
+    });
+  }
 }
 
     

@@ -28,7 +28,7 @@ export class ProductManagementComponent {
 
   isModalOpen: boolean = false;
   isEditMode: boolean = false
-
+  id: string = ''
   name: string = '';
   imageUrl: File | null = null;
   price: number | '' = '';
@@ -53,6 +53,7 @@ export class ProductManagementComponent {
     this.isEditMode = isEdit
 
     if(isEdit && product) {
+      this.id = String(product.id)
       this.name = product.name
       this.price = product.price
       this.productType = product.productType
@@ -100,7 +101,6 @@ export class ProductManagementComponent {
   }
 
   updateProduct() {
-    // Função para atualizar o produto existente
     const formData = new FormData();
     formData.append('name', this.name);
     formData.append('price', this.price.toString());
@@ -108,7 +108,7 @@ export class ProductManagementComponent {
     formData.append('status', this.status);
     formData.append('categoryId', this.categories);
     formData.append('imageUrl', this.imageUrl!);
-    // this.productService.update(formData); // Atualizar produto
+    this.productService.update(formData, this.id);
     this.setCloseModal();
   }
 
