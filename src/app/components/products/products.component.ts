@@ -20,7 +20,10 @@ export class ProductsComponent {
 
   ngOnInit(): void {
     this.getAllProducts();
-    
+  }
+
+  ngOnChanges() {
+    this.getAllProducts()
   }
 
   getAllProducts() {
@@ -30,7 +33,8 @@ export class ProductsComponent {
     this.productService.getAllProducts(this.storeId).subscribe({
       next: (response) => {
         const activeProducts = response.filter(
-          (product) => product.status === 'ativo'
+          (product) => (product.status === 'ativo', product.name.toLowerCase().includes(this.searchProduct.toLowerCase()))
+          
         );
         this.groupProductsByCategory(activeProducts);
       },
