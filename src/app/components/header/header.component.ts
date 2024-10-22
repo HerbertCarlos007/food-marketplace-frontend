@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faHouse } from '@fortawesome/free-solid-svg-icons';
@@ -24,6 +24,15 @@ export class HeaderComponent {
   faGear = faGear
   faRightFromBracket = faRightFromBracket
   role = ''
+  
+  searchProduct: string = ''
+  @Output() searchProductChange = new EventEmitter<string>()
+
+  search(e: Event): void {
+    const target = e.target as HTMLInputElement
+    this.searchProduct = target.value
+    this.searchProductChange.emit(this.searchProduct)
+  }
 
   constructor(private userService: UsersService, private loginService: LoginService,  private router: Router) {
     this.role = this.userService.getUserRole();

@@ -1,8 +1,8 @@
 <div class="w-full h-full flex ">
   <app-sidebar ></app-sidebar>
   <div class="flex-1">
-    <app-header></app-header>
-    <app-products></app-products>
+    <app-header (searchProductChange)="searchProduct = $event"></app-header>
+    <app-products [searchProduct]="searchProduct"></app-products>
   </div>
 
 </div>
