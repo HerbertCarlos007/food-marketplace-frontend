@@ -32,13 +32,11 @@ export class ProductManagementComponent {
   productForm: FormGroup
 
   id: string = ''
-  name: string = '';
   imageUrl: File | null = null;
-  price: number | '' = '';
+ 
   storeId: string = '';
   status: string = 'ativo';
-  productType: string = '';
-  categories: string = ''
+
 
   products: Product[] = [];
   categoriesList: Category[] = [];
@@ -83,10 +81,10 @@ export class ProductManagementComponent {
       categories:  product.categoryId,
      })
     }else {
-      this.name = ''
-      this.price = ''
-      this.productType = ''
-      this.categories = ''
+      this.productForm.reset({
+        productType: '',
+        categories: ''
+      })
       this.imageUrl = null
     }
    
