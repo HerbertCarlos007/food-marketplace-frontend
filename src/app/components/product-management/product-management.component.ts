@@ -7,7 +7,7 @@ import { faFilter } from '@fortawesome/free-solid-svg-icons';
 import { ModalComponent } from '../modal/modal.component';
 import { Product } from '../../interfaces/product';
 import { ProductsService } from '../../services/products.service';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LoginService } from '../../services/login.service';
 import { CommonModule } from '@angular/common';
 import { CategoriesService } from '../../services/categories.service';
@@ -16,7 +16,7 @@ import { Category } from '../../interfaces/category';
 @Component({
   selector: 'app-product-management',
   standalone: true,
-  imports: [CommonModule ,FontAwesomeModule, ModalComponent, FormsModule],
+  imports: [CommonModule ,FontAwesomeModule, ModalComponent, FormsModule, ReactiveFormsModule],
   templateUrl: './product-management.component.html',
   styleUrl: './product-management.component.css',
 })
@@ -28,6 +28,9 @@ export class ProductManagementComponent {
 
   isModalOpen: boolean = false;
   isEditMode: boolean = false
+
+  productForm: FormGroup
+
   id: string = ''
   name: string = '';
   imageUrl: File | null = null;
@@ -41,11 +44,29 @@ export class ProductManagementComponent {
   categoriesList: Category[] = [];
 
   constructor(
-    private productService: ProductsService, private categoryService: CategoriesService) {}
+    private productService: ProductsService, private categoryService: CategoriesService, private fb: FormBuilder) {
+      this.productForm = fb.group({
+        name: ['', Validators.required],
+        price: ['', Validators.required],
+        productType: ['', Validators.required],
+        categories: ['', Validators.required],
+      })
+    }
 
   ngOnInit(): void {
     this.getAllProducts()
     this.getAllCategories()
+  }
+
+  getErrorProductForm(controlName: string): string | null {
+    const control = this.productForm.get(controlName)
+  
+    if (control?.invalid && control?.touched) {
+      if (control.errors?.['required']) {
+        return 'Este campo é obrigatório.';
+      }
+    }
+    return null
   }
   
   setOpenModal(isEdit: boolean = false, product?: Product) {
@@ -53,12 +74,14 @@ export class ProductManagementComponent {
     this.isEditMode = isEdit
 
     if(isEdit && product) {
-      this.id = String(product.id)
-      this.name = product.name
-      this.price = product.price
-      this.productType = product.productType
-      this.categories = product.categoryId
+      this.id = String(product.id),
       this.imageUrl = null
+      this.productForm.patchValue({
+      name: product.name,
+      price: product.price,
+      productType: product.productType,
+      categories:  product.categoryId,
+     })
     }else {
       this.name = ''
       this.price = ''
@@ -82,18 +105,17 @@ export class ProductManagementComponent {
     const getStoreId = localStorage.getItem('store_id');
     this.storeId = getStoreId !== null ? getStoreId : '';
 
-    if (!this.imageUrl) {
-      console.error('Nenhum arquivo selecionado!');
+    if (this.productForm.invalid, !this.imageUrl) {
       return;
     }
 
     const formData = new FormData();
-    formData.append('name', this.name);
-    formData.append('price', this.price.toString());
+    formData.append('name', this.productForm.get('name')?.value);
+    formData.append('price', this.productForm.get('price')?.value);
     formData.append('storeId', this.storeId);
     formData.append('status', this.status);
-    formData.append('productType', this.productType);
-    formData.append('categoryId', this.categories);
+    formData.append('productType', this.productForm.get('productType')?.value);
+    formData.append('categoryId', this.productForm.get('categories')?.value);
     formData.append('imageUrl', this.imageUrl);
     this.productService.create(formData);
 
@@ -102,11 +124,11 @@ export class ProductManagementComponent {
 
   updateProduct() {
     const formData = new FormData();
-    formData.append('name', this.name);
-    formData.append('price', this.price.toString());
-    formData.append('productType', this.productType);
+    formData.append('name', this.productForm.get('name')?.value);
+    formData.append('price', this.productForm.get('price')?.value);
+    formData.append('productType', this.productForm.get('productType')?.value);
     formData.append('status', this.status);
-    formData.append('categoryId', this.categories);
+    formData.append('categoryId', this.productForm.get('categories')?.value);
     formData.append('imageUrl', this.imageUrl!);
     this.productService.update(formData, this.id);
     this.setCloseModal();

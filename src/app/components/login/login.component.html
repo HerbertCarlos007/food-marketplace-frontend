@@ -1,7 +1,6 @@
 <div class="w-screen h-screen bg-cover bg-center flex justify-center items-center" style="background-image: url('https://static.vecteezy.com/ti/vetor-gratis/p3/15841928-banner-de-padrao-sem-emenda-com-comida-asiatica-comida-japonesa-paezinhos-sushi-ramen-sobre-fundo-vermelho-vetor.jpg');">
   <div class="w-96 p-8 bg-white rounded-lg shadow-lg">
     <div class="content">
-      <!-- Formulário de Login -->
       <form [formGroup]="loginForm" *ngIf="isLoginForm" (ngSubmit)="login()">
         <div class="mb-5 flex flex-col">
           <label for="email" class="text-xl mb-1 text-gray-800">E-mail</label>
@@ -20,7 +19,6 @@
         </span>
       </form>
 
-      <!-- Formulário de Registro -->
       <form [formGroup]="registerForm" *ngIf="!isLoginForm" (ngSubmit)="register()">
         <div class="mb-5 flex flex-col">
           <label for="name" class="text-xl mb-1 text-gray-800">Nome</label>

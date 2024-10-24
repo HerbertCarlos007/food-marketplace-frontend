@@ -17,7 +17,6 @@ export class LoginComponent {
   registerForm: FormGroup
   isLoginForm = true
   
-
   constructor(private loginService: LoginService, private fb: FormBuilder) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -75,9 +74,7 @@ export class LoginComponent {
   }
 
   login() {
-    if (this.loginForm.invalid) {
-      return;
-    }
+   
   
     const user: User = {
       email: this.loginForm.get('email')?.value,
