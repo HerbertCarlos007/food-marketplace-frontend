@@ -8,7 +8,6 @@ import { ModalComponent } from '../modal/modal.component';
 import { Product } from '../../interfaces/product';
 import { ProductsService } from '../../services/products.service';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { LoginService } from '../../services/login.service';
 import { CommonModule } from '@angular/common';
 import { CategoriesService } from '../../services/categories.service';
 import { Category } from '../../interfaces/category';
@@ -37,6 +36,8 @@ export class ProductManagementComponent {
   storeId: string = '';
   status: string = 'ativo';
 
+  filterName: string = ''
+
 
   products: Product[] = [];
   categoriesList: Category[] = [];
@@ -54,6 +55,11 @@ export class ProductManagementComponent {
   ngOnInit(): void {
     this.getAllProducts()
     this.getAllCategories()
+  }
+
+  ngOnChanges(): void {
+    this.filterProducts()
+    this.getAllProducts()
   }
 
   getErrorProductForm(controlName: string): string | null {
@@ -145,6 +151,12 @@ export class ProductManagementComponent {
       }
     });
   }
+
+  searchProduct(e: Event): void {
+    const target = e.target as HTMLInputElement
+    this.filterName = target.value
+    console.log(this.filterName)
+  }
   
   getAllCategories() {
     const getStoreId = localStorage.getItem('store_id');
@@ -158,4 +170,22 @@ export class ProductManagementComponent {
       }
     });
   }
+
+  filterProducts() {
+    const getStoreId = localStorage.getItem('store_id');
+    this.storeId = getStoreId !== null ? getStoreId : '';
+  
+    this.productService.getAllProducts(this.storeId).subscribe((products) => {
+      let filteredProducts = products;
+  
+      if (this.filterName) {
+        filteredProducts = filteredProducts.filter((product) =>
+          product.name.toLowerCase().includes(this.filterName.toLowerCase())
+        );
+      }
+  
+      this.products = filteredProducts;
+    });
+  }
+  
 }

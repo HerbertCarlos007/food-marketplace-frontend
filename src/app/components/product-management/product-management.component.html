@@ -26,6 +26,7 @@
             class="w-full h-9 border-2 rounded-md px-2"
             type="text"
             placeholder="Produto"
+            (input)="searchProduct($event)"
           />
         </div>
         <div class="w-1/3">
@@ -152,6 +153,18 @@
             <span>{{ getErrorProductForm('productType') }}</span>
           </div>
         </div>
+        <div *ngIf="isEditMode" class="mb-4">
+          <label class="block text-sm font-medium text-gray-600 mb-2">Status</label>
+          <select class="border border-gray-300 rounded-lg p-3 w-full" formControlName="productType">
+            <option value="">Selecione</option>
+            <option value="normal">ativo</option>
+            <option value="editavel">desativado</option>
+          </select>
+          <!-- <div *ngIf="getErrorProductForm('productType')" class="text-red-500">
+            <span>{{ getErrorProductForm('productType') }}</span>
+          </div> -->
+        </div>
+        
         <div class="mb-4">
           <label class="block text-sm font-medium text-gray-600 mb-2">Categorias</label>
           <select class="border border-gray-300 rounded-lg p-3 w-full" formControlName="categories">
