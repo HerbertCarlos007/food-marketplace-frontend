@@ -37,7 +37,9 @@ export class ProductManagementComponent {
   status: string = 'ativo';
 
   filterName: string = ''
-
+  filterStatus: string = ''
+  filterProductType: string = ''
+  filteredProducts: Product[] = [];
 
   products: Product[] = [];
   categoriesList: Category[] = [];
@@ -57,10 +59,6 @@ export class ProductManagementComponent {
     this.getAllCategories()
   }
 
-  ngOnChanges(): void {
-    this.filterProducts()
-    this.getAllProducts()
-  }
 
   getErrorProductForm(controlName: string): string | null {
     const control = this.productForm.get(controlName)
@@ -144,20 +142,39 @@ export class ProductManagementComponent {
 
     this.productService.getAllProducts(this.storeId).subscribe({
       next: (response) => {
-        this.products = response
+        this.products = response;
+        this.filteredProducts = response
       },
       error: (error) => {
         console.error('Erro ao obter produtos:', error);
-      }
+      },
     });
   }
 
   searchProduct(e: Event): void {
-    const target = e.target as HTMLInputElement
-    this.filterName = target.value
-    console.log(this.filterName)
+    const target = e.target as HTMLInputElement;
+    this.filterName = target.value.toLowerCase();
+    this.filteredProducts = this.products.filter((product) =>
+      product.name.toLowerCase().includes(this.filterName)
+    );
   }
-  
+
+  searchStatus(e: Event): void {
+    const target = e.target as HTMLInputElement;
+    this.filterStatus = target.value.toLowerCase();
+    this.filteredProducts = this.products.filter((product) =>
+      product.status.toLowerCase().includes(this.filterStatus)
+    );
+  }
+
+  searchProductType(e: Event): void {
+    const target = e.target as HTMLInputElement;
+    this.filterProductType = target.value.toLowerCase();
+    this.filteredProducts = this.products.filter((product) =>
+      product.productType.toLowerCase().includes(this.filterProductType)
+    );
+  }
+
   getAllCategories() {
     const getStoreId = localStorage.getItem('store_id');
     this.storeId = getStoreId !== null ? getStoreId : '';
@@ -171,21 +188,4 @@ export class ProductManagementComponent {
     });
   }
 
-  filterProducts() {
-    const getStoreId = localStorage.getItem('store_id');
-    this.storeId = getStoreId !== null ? getStoreId : '';
-  
-    this.productService.getAllProducts(this.storeId).subscribe((products) => {
-      let filteredProducts = products;
-  
-      if (this.filterName) {
-        filteredProducts = filteredProducts.filter((product) =>
-          product.name.toLowerCase().includes(this.filterName.toLowerCase())
-        );
-      }
-  
-      this.products = filteredProducts;
-    });
-  }
-  
 }
