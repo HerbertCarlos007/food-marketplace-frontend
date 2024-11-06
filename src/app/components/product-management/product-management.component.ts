@@ -11,11 +11,12 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { CommonModule } from '@angular/common';
 import { CategoriesService } from '../../services/categories.service';
 import { Category } from '../../interfaces/category';
+import { ConfirmationModalComponent } from "../confirmation-modal/confirmation-modal.component";
 
 @Component({
   selector: 'app-product-management',
   standalone: true,
-  imports: [CommonModule ,FontAwesomeModule, ModalComponent, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FontAwesomeModule, ModalComponent, FormsModule, ReactiveFormsModule, ConfirmationModalComponent],
   templateUrl: './product-management.component.html',
   styleUrl: './product-management.component.css',
 })
@@ -26,6 +27,7 @@ export class ProductManagementComponent {
   faFilter = faFilter;
 
   isModalOpen: boolean = false;
+  isModalConfirmOpen: boolean = false;
   isEditMode: boolean = false
 
   productForm: FormGroup
@@ -94,8 +96,16 @@ export class ProductManagementComponent {
    
   }
 
+  setOpenModalConfirm() {
+    this.isModalConfirmOpen = true
+  }
+
   setCloseModal(): void {
     this.isModalOpen = !this.isModalOpen;
+  }
+
+  setCloseModalConfirm(): void {
+    this.isModalConfirmOpen = !this.isModalConfirmOpen
   }
 
   onFileSelected(event: any) {

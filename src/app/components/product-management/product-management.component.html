@@ -98,6 +98,7 @@
               </div>
               <div
               class="w-7 h-10 flex justify-center items-center text-white bg-red-500 rounded-md cursor-pointer"
+              (click)="setOpenModalConfirm()"
             >
             <fa-icon [icon]="faTrashCan" class="cursor-pointer"></fa-icon>
               
@@ -196,4 +197,6 @@
       </div>
     </form>
   </app-modal>
+
+  <app-confirmation-modal [isModalConfirmOpen]="isModalConfirmOpen" [setCloseModalConfirm]="setCloseModalConfirm"></app-confirmation-modal>
 </div>
