@@ -198,5 +198,5 @@
     </form>
   </app-modal>
 
-  <app-confirmation-modal [isModalConfirmOpen]="isModalConfirmOpen" [setCloseModalConfirm]="setCloseModalConfirm" [deleteProduct]="deleteProduct.bind(this)"></app-confirmation-modal>
+  <app-confirmation-modal [isModalConfirmOpen]="isModalConfirmOpen" [setCloseModalConfirm]="setCloseModalConfirm.bind(this)" [deleteProduct]="deleteProduct.bind(this)"></app-confirmation-modal>
 </div>
