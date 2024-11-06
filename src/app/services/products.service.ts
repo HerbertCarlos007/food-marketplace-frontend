@@ -52,6 +52,17 @@ export class ProductsService {
       },
     });
   }
+
+  delete(storeId: string, id: string): Observable<void> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.token}`,
+    });
+  
+    const apiUrl = `${this.baseApiUrl}api/product/${storeId}/${id}`;
+  
+    return this.http.delete<void>(apiUrl, { headers });
+  }
+  
 }
 
     

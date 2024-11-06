@@ -11,5 +11,8 @@ import { Component, Input } from '@angular/core';
 export class ConfirmationModalComponent {
   @Input() isModalConfirmOpen!: boolean
   @Input() setCloseModalConfirm!: () => void
+  @Input() deleteProduct!: () => void
+
+  
   
 }

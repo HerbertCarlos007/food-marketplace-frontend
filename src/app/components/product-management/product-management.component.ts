@@ -26,6 +26,9 @@ export class ProductManagementComponent {
   faPencil = faPencil;
   faFilter = faFilter;
 
+  productId: string = ''
+  storeId: string = '';
+
   isModalOpen: boolean = false;
   isModalConfirmOpen: boolean = false;
   isEditMode: boolean = false
@@ -35,7 +38,6 @@ export class ProductManagementComponent {
   id: string = ''
   imageUrl: File | null = null;
  
-  storeId: string = '';
   status: string = 'ativo';
 
   filterName: string = ''
@@ -96,9 +98,13 @@ export class ProductManagementComponent {
    
   }
 
-  setOpenModalConfirm() {
-    this.isModalConfirmOpen = true
+  setOpenModalConfirm(product?: Product) {
+    this.isModalConfirmOpen = true;
+    const getStoreId = localStorage.getItem('store_id');
+    this.storeId = getStoreId !== null ? getStoreId : '';
+    this.productId = String(product?.id);
   }
+  
 
   setCloseModal(): void {
     this.isModalOpen = !this.isModalOpen;
@@ -197,5 +203,18 @@ export class ProductManagementComponent {
       }
     });
   }
+
+  deleteProduct(): void {
+    this.productService.delete(this.storeId, this.productId).subscribe({
+      next: () => {
+        this.setCloseModalConfirm()
+        this.getAllProducts()
+      },
+      error: (err) => {
+        console.error('Erro ao excluir o produto:', err);
+      }
+    });
+  }
+  
 
 }
