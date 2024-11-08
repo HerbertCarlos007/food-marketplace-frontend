@@ -11,27 +11,39 @@ export class CartService {
 
   cart$ = this.cartSubject.asObservable()
 
-  constructor() { }
+  constructor() {
+    const savedCart = localStorage.getItem('cartItems');
+    if (savedCart) {
+      this.cartItems = JSON.parse(savedCart);
+      this.cartSubject.next(this.cartItems);
+    }
+  }
 
   addToCart(item: Cart) {
-    const existingItem = this.cartItems.find(cartItem => cartItem.id === item.id)
+    const existingItem = this.cartItems.find(cartItem => cartItem.id === item.id);
 
-    if(existingItem) {
-      existingItem.quantity += item.quantity
-    }else {
-      this.cartItems.push(item)
+    if (existingItem) {
+      existingItem.quantity += item.quantity;
+    } else {
+      this.cartItems.push(item);
     }
 
-    this.cartSubject.next([...this.cartItems])
+    this.saveCartToLocalStorage();
+
+    this.cartSubject.next([...this.cartItems]);
     console.log('Item adicionado:', item);
     console.log('Conteúdo do carrinho:', this.cartItems);
   }
 
   getCartItems(): Cart[] {
-    return [...this.cartItems]
+    return [...this.cartItems];
   }
 
   getTotalValue() {
     return this.cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+  }
+
+  private saveCartToLocalStorage() {
+    localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
   }
 }
