@@ -2,6 +2,8 @@ import { Component, Input } from '@angular/core';
 import { Product } from '../../interfaces/product';
 import { ProductsService } from '../../services/products.service';
 import { CommonModule } from '@angular/common';
+import { Cart } from '../../interfaces/cart';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-products',
@@ -16,7 +18,7 @@ export class ProductsComponent {
 
   @Input() searchProduct: string = '';
 
-  constructor(private productService: ProductsService) {}
+  constructor(private productService: ProductsService, private cartService: CartService) {}
 
   ngOnInit(): void {
     this.getAllProducts();
@@ -53,5 +55,17 @@ export class ProductsComponent {
       acc[category].push(product);
       return acc;
     }, {} as { [key: string]: Product[] });
+  }
+
+  addToCart(product: Product) {
+    const cartItem: Cart = {
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      imageUrl: product.imageUrl,
+      quantity: 1
+    }
+
+    this.cartService.addToCart(cartItem)
   }
 }
