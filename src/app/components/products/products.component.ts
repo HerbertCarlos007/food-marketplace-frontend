@@ -4,6 +4,7 @@ import { ProductsService } from '../../services/products.service';
 import { CommonModule } from '@angular/common';
 import { Cart } from '../../interfaces/cart';
 import { CartService } from '../../services/cart.service';
+import { AlertComponent } from '../alert/alert.component';
 
 @Component({
   selector: 'app-products',
@@ -15,10 +16,13 @@ import { CartService } from '../../services/cart.service';
 export class ProductsComponent {
   storeId: string = '';
   productsByCategory: { [key: string]: Product[] } = {};
+  
+  alert = new AlertComponent();
 
   @Input() searchProduct: string = '';
 
   constructor(private productService: ProductsService, private cartService: CartService) {}
+  
 
   ngOnInit(): void {
     this.getAllProducts();
@@ -67,5 +71,6 @@ export class ProductsComponent {
     }
 
     this.cartService.addToCart(cartItem)
+    this.alert.showAlert('Produto adicionando com sucesso', 'success')
   }
 }

@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { CategoriesService } from '../../services/categories.service';
 import { Category } from '../../interfaces/category';
 import { ConfirmationModalComponent } from "../confirmation-modal/confirmation-modal.component";
+import { AlertComponent } from '../alert/alert.component';
 
 @Component({
   selector: 'app-product-management',
@@ -44,6 +45,8 @@ export class ProductManagementComponent {
   isModalOpen: boolean = false;
   isModalConfirmOpen: boolean = false;
   isEditMode: boolean = false
+
+  alert = new AlertComponent();
 
   constructor(
     private productService: ProductsService, private categoryService: CategoriesService, private fb: FormBuilder) {
@@ -134,8 +137,9 @@ export class ProductManagementComponent {
     formData.append('imageUrl', this.imageUrl);
     formData.append('accompaniments', 'salada')
     this.productService.create(formData);
-
     this.setCloseModal()
+    this.getAllProducts()
+    this.alert.showAlert('Produto criado com sucesso', 'success')
   }
 
   updateProduct() {
@@ -146,8 +150,11 @@ export class ProductManagementComponent {
     formData.append('status', this.status);
     formData.append('categoryId', this.productForm.get('categories')?.value);
     formData.append('imageUrl', this.imageUrl!);
+    formData.append('accompaniments', 'salada')
     this.productService.update(formData, this.id);
     this.setCloseModal();
+    this.getAllProducts()
+    this.alert.showAlert('Produto alterado com sucesso', 'success')
   }
 
   getAllProducts() {
@@ -207,6 +214,7 @@ export class ProductManagementComponent {
       next: () => {
         this.setCloseModalConfirm()
         this.getAllProducts()
+        this.alert.showAlert('Produto deletado com sucesso', 'error')
       },
       error: (err) => {
         console.error('Erro ao excluir o produto:', err);
@@ -214,5 +222,4 @@ export class ProductManagementComponent {
     });
   }
   
-
 }

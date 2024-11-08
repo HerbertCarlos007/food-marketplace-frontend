@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { Cart } from '../../interfaces/cart';
 import { CommonModule } from '@angular/common';
+import { AlertComponent } from '../alert/alert.component';
 
 @Component({
   selector: 'app-cart',
@@ -13,6 +14,8 @@ import { CommonModule } from '@angular/common';
 export class CartComponent {
   cartItems: Cart[] = [];
   totalValue = 0;
+  
+  alert = new AlertComponent();
 
   constructor(private cartService: CartService) {}
 
@@ -31,6 +34,7 @@ export class CartComponent {
     if (itemId) {
       this.cartService.removeItem(itemId);
     }
+    this.alert.showAlert('Produto removido com sucesso', 'error')
   }
 
   incrementQuantity(itemId: string | undefined) {
