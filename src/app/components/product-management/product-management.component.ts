@@ -26,27 +26,24 @@ export class ProductManagementComponent {
   faPencil = faPencil;
   faFilter = faFilter;
 
+  products: Product[] = [];
+  categoriesList: Category[] = [];
+
   productId: string = ''
   storeId: string = '';
-
-  isModalOpen: boolean = false;
-  isModalConfirmOpen: boolean = false;
-  isEditMode: boolean = false
-
-  productForm: FormGroup
-
   id: string = ''
-  imageUrl: File | null = null;
- 
   status: string = 'ativo';
+  imageUrl: File | null = null;
+  productForm: FormGroup
 
   filterName: string = ''
   filterStatus: string = ''
   filterProductType: string = ''
   filteredProducts: Product[] = [];
 
-  products: Product[] = [];
-  categoriesList: Category[] = [];
+  isModalOpen: boolean = false;
+  isModalConfirmOpen: boolean = false;
+  isEditMode: boolean = false
 
   constructor(
     private productService: ProductsService, private categoryService: CategoriesService, private fb: FormBuilder) {
