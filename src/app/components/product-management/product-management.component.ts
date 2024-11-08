@@ -132,6 +132,7 @@ export class ProductManagementComponent {
     formData.append('productType', this.productForm.get('productType')?.value);
     formData.append('categoryId', this.productForm.get('categories')?.value);
     formData.append('imageUrl', this.imageUrl);
+    formData.append('accompaniments', 'salada')
     this.productService.create(formData);
 
     this.setCloseModal()

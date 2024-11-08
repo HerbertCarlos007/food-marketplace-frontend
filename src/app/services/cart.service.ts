@@ -23,8 +23,15 @@ export class CartService {
     }
 
     this.cartSubject.next([...this.cartItems])
-    console.log(...this.cartItems)
+    console.log('Item adicionado:', item);
+    console.log('Conteúdo do carrinho:', this.cartItems);
   }
 
-  
+  getCartItems(): Cart[] {
+    return [...this.cartItems]
+  }
+
+  getTotalValue() {
+    return this.cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+  }
 }
