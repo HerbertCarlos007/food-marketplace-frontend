@@ -28,4 +28,11 @@ export class CartComponent {
 
     this.totalValue = this.cartService.getTotalValue()
   }
+
+  removeItem(itemId: string | undefined) {
+    if (itemId) { 
+      this.cartService.removeItem(itemId);
+    }
+  }
+  
 }

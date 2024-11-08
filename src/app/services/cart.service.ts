@@ -39,6 +39,13 @@ export class CartService {
     return [...this.cartItems];
   }
 
+  removeItem(itemId: string) {
+    this.cartItems = this.cartItems.filter(item => item.id !== itemId);
+    this.saveCartToLocalStorage();
+    this.cartSubject.next([...this.cartItems]);
+  }
+  
+
   getTotalValue() {
     return this.cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
   }
