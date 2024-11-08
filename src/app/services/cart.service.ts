@@ -6,10 +6,10 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class CartService {
-  private cartItems: Cart[] = []
-  private cartSubject = new BehaviorSubject<Cart[]>(this.cartItems)
+  private cartItems: Cart[] = [];
+  private cartSubject = new BehaviorSubject<Cart[]>(this.cartItems);
 
-  cart$ = this.cartSubject.asObservable()
+  cart$ = this.cartSubject.asObservable();
 
   constructor() {
     const savedCart = localStorage.getItem('cartItems');
@@ -29,10 +29,7 @@ export class CartService {
     }
 
     this.saveCartToLocalStorage();
-
     this.cartSubject.next([...this.cartItems]);
-    console.log('Item adicionado:', item);
-    console.log('Conteúdo do carrinho:', this.cartItems);
   }
 
   getCartItems(): Cart[] {
@@ -44,10 +41,30 @@ export class CartService {
     this.saveCartToLocalStorage();
     this.cartSubject.next([...this.cartItems]);
   }
-  
+
+  incrementQuantity(itemId: string) {
+    const item = this.cartItems.find(cartItem => cartItem.id === itemId);
+    if (item) {
+      item.quantity += 1;
+      this.updateCart();
+    }
+  }
+
+  decrementQuantity(itemId: string) {
+    const item = this.cartItems.find(cartItem => cartItem.id === itemId);
+    if (item && item.quantity > 1) {
+      item.quantity -= 1;
+      this.updateCart();
+    }
+  }
 
   getTotalValue() {
     return this.cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+  }
+
+  private updateCart() {
+    this.saveCartToLocalStorage();
+    this.cartSubject.next([...this.cartItems]);
   }
 
   private saveCartToLocalStorage() {

@@ -11,28 +11,42 @@ import { CommonModule } from '@angular/common';
   styleUrl: './cart.component.css'
 })
 export class CartComponent {
-  cartItems: Cart[] = []
-  totalValue = 0 
+  cartItems: Cart[] = [];
+  totalValue = 0;
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
-    this.getCartItems()
+    this.getCartItems();
   }
 
   getCartItems() {
     this.cartService.cart$.subscribe(items => {
-      this.cartItems = items
-      console.log('Itens do carrinho atualizados:', this.cartItems);
-    })
-
-    this.totalValue = this.cartService.getTotalValue()
+      this.cartItems = items;
+      this.updateTotalValue();
+    });
   }
 
   removeItem(itemId: string | undefined) {
-    if (itemId) { 
+    if (itemId) {
       this.cartService.removeItem(itemId);
     }
+  }
+
+  incrementQuantity(itemId: string | undefined) {
+    if (itemId) {
+      this.cartService.incrementQuantity(itemId);
+    }
+  }
+
+  decrementQuantity(itemId: string | undefined) {
+    if(itemId) {
+      this.cartService.decrementQuantity(itemId);
+    }
+  }
+
+  updateTotalValue() {
+    this.totalValue = this.cartService.getTotalValue();
   }
   
 }

@@ -17,9 +17,9 @@
           <div class="text-right">
             <p class="text-lg font-bold text-gray-800">{{item.price}}</p>
             <div class="flex items-center mt-2">
-              <button class="px-3 py-1 bg-gray-200 rounded-l-md">-</button>
-              <input type="text" value="1" class="w-12 text-center border border-gray-200">
-              <button class="px-3 py-1 bg-gray-200 rounded-r-md">+</button>
+              <button (click)="decrementQuantity(item.id)" class="px-3 py-1 bg-gray-200 rounded-l-md">-</button>
+              <input type="text" [value]="item.quantity" class="w-12 text-center border border-gray-200">
+              <button (click)="incrementQuantity(item.id)" class="px-3 py-1 bg-gray-200 rounded-r-md">+</button>
               <button class="ml-4 px-3 py-1 bg-red-600 text-white rounded-md hover:bg-red-700" (click)="removeItem(item.id)">Excluir</button>
             </div>
           </div>
