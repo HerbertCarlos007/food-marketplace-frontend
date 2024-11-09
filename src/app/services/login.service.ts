@@ -14,6 +14,12 @@ export class LoginService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
+  ngOnInit() {
+    
+      console.log('olaaa')
+    
+  }
+
   login(user: User) {
     const apiUrl = `${this.baseApiUrl}auth/login`;
     return this.http.post<User>(apiUrl, user).subscribe({
