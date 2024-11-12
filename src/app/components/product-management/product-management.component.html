@@ -60,6 +60,7 @@
             <th class="border border-gray-200 p-2">Produto</th>
             <th class="border border-gray-200 p-2">Tipo</th>
             <th class="border border-gray-200 p-2">Preço</th>
+            <th class="border border-gray-200 p-2">Acompanhamentos</th>
             <th class="border border-gray-200 p-2">Status</th>
             <th class="border border-gray-200 p-2">Ação</th>
           </tr>
@@ -81,6 +82,7 @@
               {{ product.productType }}
             </td>
             <td class="border border-gray-200 p-2">R$ {{ product.price }}</td>
+            <td class="border border-gray-200 p-2">{{ product.accompaniments }}</td>
             <td class="border border-gray-200 p-2">
               <span 
                 class="px-2 py-1 rounded-full"
