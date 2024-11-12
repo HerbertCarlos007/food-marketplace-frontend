@@ -30,11 +30,8 @@ export class ProductsService {
   }
 
   getAllProducts(storeId: string): Observable<Product[]> {
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${this.token}`,
-    });
     const apiUrl = `${this.baseApiUrl}api/product/${storeId}`;
-    return this.http.get<Product[]>(apiUrl, { headers }).pipe(
+    return this.http.get<Product[]>(apiUrl).pipe(
       map((response: Product[]) => response)
     )
   }

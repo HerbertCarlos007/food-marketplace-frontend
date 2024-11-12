@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { Cart } from '../../interfaces/cart';
 import { CartService } from '../../services/cart.service';
 import { AlertComponent } from '../alert/alert.component';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-products',
@@ -21,11 +22,13 @@ export class ProductsComponent {
 
   @Input() searchProduct: string = '';
 
-  constructor(private productService: ProductsService, private cartService: CartService) {}
+  constructor(private productService: ProductsService, private cartService: CartService, private loginService: LoginService) {}
   
 
   ngOnInit(): void {
     this.getAllProducts();
+    this.getToken()
+    
   }
 
   ngOnChanges() {
@@ -72,5 +75,9 @@ export class ProductsComponent {
 
     this.cartService.addToCart(cartItem)
     this.alert.showAlert('Produto adicionando com sucesso', 'success')
+  }
+
+  getToken() {
+    this.loginService.getToken()
   }
 }
