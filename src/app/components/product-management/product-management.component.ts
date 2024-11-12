@@ -55,6 +55,7 @@ export class ProductManagementComponent {
         price: ['', Validators.required],
         productType: ['', Validators.required],
         categories: ['', Validators.required],
+        accompaniments: ['', Validators.required],
       })
     }
 
@@ -135,7 +136,7 @@ export class ProductManagementComponent {
     formData.append('productType', this.productForm.get('productType')?.value);
     formData.append('categoryId', this.productForm.get('categories')?.value);
     formData.append('imageUrl', this.imageUrl);
-    formData.append('accompaniments', 'salada')
+    formData.append('accompaniments', this.productForm.get('accompaniments')?.value)
     this.productService.create(formData);
     this.setCloseModal()
     this.getAllProducts()
@@ -150,7 +151,7 @@ export class ProductManagementComponent {
     formData.append('status', this.status);
     formData.append('categoryId', this.productForm.get('categories')?.value);
     formData.append('imageUrl', this.imageUrl!);
-    formData.append('accompaniments', 'salada')
+    formData.append('accompaniments', this.productForm.get('accompaniments')?.value)
     this.productService.update(formData, this.id);
     this.setCloseModal();
     this.getAllProducts()

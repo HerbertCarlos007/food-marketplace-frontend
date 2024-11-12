@@ -8,4 +8,5 @@ export interface Product {
     productType: string
     categoryId: string
     categoryName: string
+    accompaniments: string
 }

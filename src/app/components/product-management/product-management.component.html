@@ -141,6 +141,20 @@
             <span>{{ getErrorProductForm('price') }}</span>
           </div>
         </div>
+
+        <div class="mb-4">
+          <label class="block text-sm font-medium text-gray-600 mb-2">Acompanhamentos</label>
+          <input
+            type="text"
+            class="border border-gray-300 rounded-lg p-3 w-full"
+            placeholder="Acompanhamentos"
+            formControlName="accompaniments"
+          />
+          <div *ngIf="getErrorProductForm('accompaniments')" class="text-red-500">
+            <span>{{ getErrorProductForm('accompaniments') }}</span>
+          </div>
+        </div>
+
         <div class="mb-4">
           <label class="block text-sm font-medium text-gray-600 mb-2">Tipo</label>
           <select class="border border-gray-300 rounded-lg p-3 w-full" formControlName="productType">
