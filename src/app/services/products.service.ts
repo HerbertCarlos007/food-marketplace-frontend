@@ -9,19 +9,12 @@ import { map, Observable } from 'rxjs';
 })
 export class ProductsService {
   private baseApiUrl = environment.baseApiUrl;
-  token = localStorage.getItem('token'); 
 
   constructor(private http: HttpClient) {}
 
   create(formData: FormData) {
-  
-
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${this.token}`,
-    });
-
     const apiUrl = `${this.baseApiUrl}api/product`;
-    return this.http.post<Product>(apiUrl, formData, { headers }).subscribe({
+    return this.http.post<Product>(apiUrl, formData).subscribe({
       next: (response) => {},
       error: (error) => {
         console.error('register failed:', error);
@@ -37,12 +30,8 @@ export class ProductsService {
   }
 
   update(formData: FormData, id: string) {
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${this.token}`,
-    });
-
     const apiUrl = `${this.baseApiUrl}api/product/${id}`;
-    return this.http.put<Product>(apiUrl, formData, { headers }).subscribe({
+    return this.http.put<Product>(apiUrl, formData).subscribe({
       next: (response) => {},
       error: (error) => {
         console.error('register failed:', error);
@@ -51,13 +40,8 @@ export class ProductsService {
   }
 
   delete(storeId: string, id: string): Observable<void> {
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${this.token}`,
-    });
-  
     const apiUrl = `${this.baseApiUrl}api/product/${storeId}/${id}`;
-  
-    return this.http.delete<void>(apiUrl, { headers });
+    return this.http.delete<void>(apiUrl);
   }
   
 }

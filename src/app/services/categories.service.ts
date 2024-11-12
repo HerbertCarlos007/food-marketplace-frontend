@@ -9,16 +9,12 @@ import { Category } from '../interfaces/category';
 })
 export class CategoriesService {
   private baseApiUrl = environment.baseApiUrl;
-  token = localStorage.getItem('token'); 
-
+  
   constructor(private http: HttpClient) { }
 
   getCategories(): Observable<Category[]> {
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${this.token}`,
-    });
     const apiUrl = `${this.baseApiUrl}api/category`;
-    return this.http.get<Category[]>(apiUrl, { headers }).pipe(
+    return this.http.get<Category[]>(apiUrl).pipe(
       map((response: Category[]) => response)
     )
   }
