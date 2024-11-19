@@ -38,8 +38,8 @@
           <span class="text-lg">Estoque</span>
           <select class="w-full h-9 border-2 rounded-md px-2" (change)="searchInStock($event)">
             <option value="">Escolher</option>
-            <option value="sim">Sim</option>
-            <option value="nao">Não</option>
+            <option value="true">Sim</option>
+            <option value="false">Não</option>
           </select>
         </div>
       </div>
@@ -83,8 +83,8 @@
               <span 
                 class="px-2 py-1 rounded-full"
                 [ngClass]="{
-                  'bg-green-200 text-green-700': product.inStock === 'sim',
-                  'bg-red-200 text-red-700': product.inStock === 'nao'
+                  'bg-green-200 text-green-700': product.inStock === 'true',
+                  'bg-red-200 text-red-700': product.inStock === 'false'
                 }">
                 {{ product.inStock }}
               </span>
@@ -169,7 +169,7 @@
   
           <div *ngIf="isEditMode" class="col-span-2 md:col-span-1">
             <label class="block text-sm font-medium text-gray-600 mb-2">Estoque</label>
-            <select class="border border-gray-300 rounded-lg p-3 w-full" formControlName="status">
+            <select class="border border-gray-300 rounded-lg p-3 w-full" (change)="handleChangeInStock($event)">
               <option value="">Selecione</option>
               <option value="true">Sim</option>
               <option value="false">Não</option>

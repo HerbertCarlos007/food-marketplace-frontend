@@ -33,7 +33,7 @@ export class ProductManagementComponent {
   productId: string = ''
   storeId: string = '';
   id: string = ''
-  inStock: string = 'sim';
+  inStock: string = 'true';
   imageUrl: File | null = null;
   productForm: FormGroup
 
@@ -64,7 +64,6 @@ export class ProductManagementComponent {
     this.getAllCategories()
   }
 
-
   getErrorProductForm(controlName: string): string | null {
     const control = this.productForm.get(controlName)
   
@@ -86,6 +85,7 @@ export class ProductManagementComponent {
       this.productForm.patchValue({
       name: product.name,
       price: product.price,
+      inStock: product.inStock,
       productType: product.productType,
       categories:  product.categoryId,
      })
@@ -152,7 +152,7 @@ export class ProductManagementComponent {
     formData.append('categoryId', this.productForm.get('categories')?.value);
     formData.append('imageUrl', this.imageUrl!);
     formData.append('accompaniments', this.productForm.get('accompaniments')?.value)
-    this.productService.update(formData, this.id);
+    this.productService.update(formData, this.id)
     this.setCloseModal();
     this.getAllProducts()
     this.alert.showAlert('Produto alterado com sucesso', 'success')
@@ -171,6 +171,11 @@ export class ProductManagementComponent {
         console.error('Erro ao obter produtos:', error);
       },
     });
+  }
+
+  handleChangeInStock(e: Event): void {
+    const target = e.target as HTMLInputElement
+    this.inStock = target.value
   }
 
   searchProduct(e: Event): void {

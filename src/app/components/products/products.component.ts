@@ -27,7 +27,6 @@ export class ProductsComponent {
 
   ngOnInit(): void {
     this.getAllProducts();
-    this.getToken()
     
   }
 
@@ -41,11 +40,11 @@ export class ProductsComponent {
 
     this.productService.getAllProducts(this.storeId).subscribe({
       next: (response) => {
-        const activeProducts = response.filter(
-          (product) => (product.accompaniments === 'sim', product.name.toLowerCase().includes(this.searchProduct.toLowerCase()))
+        const inStockProducts = response.filter(
+          (product) => (product.inStock === 'true' && product.name.toLowerCase().includes(this.searchProduct.toLowerCase()))
           
         );
-        this.groupProductsByCategory(activeProducts);
+        this.groupProductsByCategory(inStockProducts);
       },
       error: (error) => {
         console.error('Erro ao obter produtos:', error);
@@ -75,9 +74,5 @@ export class ProductsComponent {
 
     this.cartService.addToCart(cartItem)
     this.alert.showAlert('Produto adicionando com sucesso', 'success')
-  }
-
-  getToken() {
-    this.loginService.getToken()
   }
 }
