@@ -4,7 +4,7 @@ export interface Product {
     imageUrl: File
     storeId: string
     price: number
-    status: string
+    inStock: string
     productType: string
     categoryId: string
     categoryName: string

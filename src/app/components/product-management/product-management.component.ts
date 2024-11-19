@@ -33,12 +33,12 @@ export class ProductManagementComponent {
   productId: string = ''
   storeId: string = '';
   id: string = ''
-  status: string = 'ativo';
+  inStock: string = 'sim';
   imageUrl: File | null = null;
   productForm: FormGroup
 
   filterName: string = ''
-  filterStatus: string = ''
+  filterStock: string = ''
   filterProductType: string = ''
   filteredProducts: Product[] = [];
 
@@ -132,7 +132,7 @@ export class ProductManagementComponent {
     formData.append('name', this.productForm.get('name')?.value);
     formData.append('price', this.productForm.get('price')?.value);
     formData.append('storeId', this.storeId);
-    formData.append('status', this.status);
+    formData.append('inStock', this.inStock);
     formData.append('productType', this.productForm.get('productType')?.value);
     formData.append('categoryId', this.productForm.get('categories')?.value);
     formData.append('imageUrl', this.imageUrl);
@@ -148,7 +148,7 @@ export class ProductManagementComponent {
     formData.append('name', this.productForm.get('name')?.value);
     formData.append('price', this.productForm.get('price')?.value);
     formData.append('productType', this.productForm.get('productType')?.value);
-    formData.append('status', this.status);
+    formData.append('inStock', this.inStock);
     formData.append('categoryId', this.productForm.get('categories')?.value);
     formData.append('imageUrl', this.imageUrl!);
     formData.append('accompaniments', this.productForm.get('accompaniments')?.value)
@@ -181,11 +181,11 @@ export class ProductManagementComponent {
     );
   }
 
-  searchStatus(e: Event): void {
+  searchInStock(e: Event): void {
     const target = e.target as HTMLInputElement;
-    this.filterStatus = target.value.toLowerCase();
+    this.filterStock = target.value.toLowerCase();
     this.filteredProducts = this.products.filter((product) =>
-      product.status.toLowerCase().includes(this.filterStatus)
+      product.inStock.toLowerCase().includes(this.filterStock)
     );
   }
 

@@ -42,7 +42,7 @@ export class ProductsComponent {
     this.productService.getAllProducts(this.storeId).subscribe({
       next: (response) => {
         const activeProducts = response.filter(
-          (product) => (product.status === 'ativo', product.name.toLowerCase().includes(this.searchProduct.toLowerCase()))
+          (product) => (product.accompaniments === 'sim', product.name.toLowerCase().includes(this.searchProduct.toLowerCase()))
           
         );
         this.groupProductsByCategory(activeProducts);
