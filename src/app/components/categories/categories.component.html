@@ -18,20 +18,21 @@
     </div>
   
   
-    <div class="mt-6 w-full bg-gray-100 p-6 border border-gray-200 rounded-md">
+    <div [formGroup]="categoryForm" class="mt-6 w-full bg-gray-100 p-6 border border-gray-200 rounded-md">
       <div class="mb-4">
         <label class="block text-lg font-medium text-gray-600 mb-2">Nome da Categoria</label>
         <input
           type="text"
           class="w-full h-9 border-2 rounded-md px-2"
           placeholder="Digite o nome da categoria"
+          formControlName="name"
         />
       </div>
       <div class="flex justify-end space-x-4">
         <button class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">
           Cancelar
         </button>
-        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600" (click)="createCategory()">
           Salvar
         </button>
       </div>

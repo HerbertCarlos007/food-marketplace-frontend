@@ -12,6 +12,16 @@ export class CategoriesService {
   
   constructor(private http: HttpClient) { }
 
+  createCategory(category: Category) {
+    const apiUrl = `${this.baseApiUrl}api/category`;
+    return this.http.post<Category>(apiUrl, category).subscribe({
+      next: (response) => {},
+      error: (error) => {
+        console.error('register failed:', error);
+      },
+    });
+  }
+
   getCategories(): Observable<Category[]> {
     const apiUrl = `${this.baseApiUrl}api/category`;
     return this.http.get<Category[]>(apiUrl).pipe(

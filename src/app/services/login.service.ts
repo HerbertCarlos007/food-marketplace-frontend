@@ -57,6 +57,7 @@ export class LoginService {
 
   getStoreId() {
    const storeId = localStorage.getItem('store_id')
+   return storeId
   }
 
   getToken() {
