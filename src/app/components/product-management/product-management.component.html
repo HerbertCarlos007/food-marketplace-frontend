@@ -91,8 +91,9 @@
             <td class="border border-gray-200 p-2 space-x-2 flex">
               <div
                 class="w-7 h-10 flex justify-center items-center text-white bg-blue-500 rounded-md cursor-pointer"
+                (click)="setOpenModal(true, product)"
               >
-                <fa-icon [icon]="faPencil" (click)="setOpenModal(true, product)"></fa-icon>
+                <fa-icon [icon]="faPencil"></fa-icon>
               </div>
               <div
               class="w-7 h-10 flex justify-center items-center text-white bg-red-500 rounded-md cursor-pointer"
