@@ -2,8 +2,8 @@
     <div class="w-full flex justify-between mt-6">
       <h2 class="text-3xl">Categorias</h2>
       <div class="space-x-10 text-2xl flex">
-        <div class="w-10 text-white bg-blue-500 text-center rounded-md cursor-pointer">
-          <i class="fa fa-plus">+</i>
+        <div class="w-10 text-white bg-red-500 text-center rounded-md cursor-pointer">
+            <fa-icon [icon]="faTrashCan"></fa-icon>
         </div>
       </div>
     </div>
@@ -16,7 +16,6 @@
         placeholder="Digite para filtrar categorias"
       />
     </div>
-  
   
     <div [formGroup]="categoryForm" class="mt-6 w-full bg-gray-100 p-6 border border-gray-200 rounded-md">
       <div class="mb-4">
@@ -38,7 +37,6 @@
       </div>
     </div>
    
-    
     <div class="mt-6">
       <table class="w-full border-collapse border border-gray-200">
         <thead>
@@ -51,17 +49,17 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr *ngFor="let category of categories">
             <td class="border border-gray-200 p-2">
                 <input type="checkbox" />
             </td>
-            <td class="border border-gray-200 p-2">Categoria Exemplo</td>
+            <td class="border border-gray-200 p-2">{{category.name}}</td>
             <td class="border border-gray-200 p-2 space-x-2 flex">
               <div class="w-7 h-7 flex justify-center items-center text-white bg-blue-500 rounded-md cursor-pointer">
-                <i class="fa fa-pencil"></i>
+                <fa-icon [icon]="faPencil"></fa-icon>
               </div>
               <div class="w-7 h-7 flex justify-center items-center text-white bg-red-500 rounded-md cursor-pointer">
-                <i class="fa fa-trash"></i>
+                <fa-icon [icon]="faTrashCan"></fa-icon>
               </div>
             </td>
           </tr>
