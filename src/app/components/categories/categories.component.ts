@@ -18,9 +18,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 export class CategoriesComponent {
   categoryForm: FormGroup
   categories: Category[] = []
+  filteredCategories: Category[] = []
 
   faTrashCan = faTrashCan;
   faPencil = faPencil;
+
+  filterCategory: string = ''
 
   constructor(private categoryService: CategoriesService, private loginService: LoginService, private fb: FormBuilder) {
     this.categoryForm = this.fb.group({
@@ -36,6 +39,7 @@ export class CategoriesComponent {
     this.categoryService.getCategories().subscribe({
       next: (response) => {
         this.categories = response
+        this.filteredCategories = response
       },
       error: (error) => {
         console.error('Erro ao obter categorias:', error);
@@ -57,5 +61,13 @@ export class CategoriesComponent {
     };
 
     this.categoryService.createCategory(category);
+  }
+
+  searchCategory(e: Event): void {
+    const target = e.target as HTMLInputElement;
+    this.filterCategory = target.value.toLowerCase();
+    this.filteredCategories = this.categories.filter((category) =>
+      category.name.toLowerCase().includes(this.filterCategory)
+    );
   }
 }

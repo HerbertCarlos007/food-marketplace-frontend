@@ -25,6 +25,7 @@
           class="w-full h-9 border-2 rounded-md px-2"
           placeholder="Digite o nome da categoria"
           formControlName="name"
+          (input)="searchCategory($event)"
         />
       </div>
       <div class="flex justify-end space-x-4">
@@ -49,7 +50,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let category of categories">
+          <tr *ngFor="let category of filteredCategories">
             <td class="border border-gray-200 p-2">
                 <input type="checkbox" />
             </td>
