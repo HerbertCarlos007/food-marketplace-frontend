@@ -1,6 +1,7 @@
 <div class="w-full h-full flex">
   <app-configuration-sidebar (selectedOption)="onOptionSelected($event)"></app-configuration-sidebar>
   <div class="flex-1 overflow-y-auto scrollbar-hidden" style="max-height: calc(100vh - 30px);">
+    <app-appearance *ngIf="activeComponent === 'appearance'"></app-appearance>
     <app-product-management *ngIf="activeComponent === 'products'"></app-product-management>
     <app-users *ngIf="activeComponent === 'users'"></app-users>
     <app-categories *ngIf="activeComponent === 'categories'"></app-categories>
