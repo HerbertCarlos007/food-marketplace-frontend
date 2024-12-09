@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environments';
 import { CustomField } from '../interfaces/customField';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -19,5 +20,12 @@ export class AppearanceService {
         console.error('register custom field failed', error);
       },
     });
+  }
+
+  getCustomFields(storeId: string): Observable<CustomField[]> {
+    const apiUrl = `${this.baseApiUrl}api/customField/${storeId}`
+    return this.http.get<CustomField[]>(apiUrl).pipe(
+      map((response: CustomField[]) => response)
+    )
   }
 }
