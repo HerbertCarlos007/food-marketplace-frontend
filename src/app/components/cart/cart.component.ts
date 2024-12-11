@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-import { CartService } from '../../services/cart.service';
-import { Cart } from '../../interfaces/cart';
-import { CommonModule } from '@angular/common';
-import { AlertComponent } from '../alert/alert.component';
+import { Component } from '@angular/core'
+import { CartService } from '../../services/cart.service'
+import { Cart } from '../../interfaces/cart'
+import { CommonModule } from '@angular/common'
+import { AlertComponent } from '../alert/alert.component'
 
 @Component({
   selector: 'app-cart',
@@ -39,18 +39,18 @@ export class CartComponent {
 
   incrementQuantity(itemId: string | undefined) {
     if (itemId) {
-      this.cartService.incrementQuantity(itemId);
+      this.cartService.incrementQuantity(itemId)
     }
   }
 
   decrementQuantity(itemId: string | undefined) {
     if(itemId) {
-      this.cartService.decrementQuantity(itemId);
+      this.cartService.decrementQuantity(itemId)
     }
   }
 
   updateTotalValue() {
-    this.totalValue = this.cartService.getTotalValue();
+    this.totalValue = this.cartService.getTotalValue()
   }
   
 }
