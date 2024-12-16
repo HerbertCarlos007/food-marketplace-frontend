@@ -1,6 +1,15 @@
 <div class="w-full px-8">
-  <div class="mt-6">
+  <div class="w-full flex justify-between mt-6">
     <h2 class="text-3xl">Usuários</h2>
+    <div class="space-x-10 text-2xl flex">
+      <div
+        class="w-10 text-white bg-blue-500 text-center rounded-md cursor-pointer"
+        (click)="isModalCreateUserOpen = true"
+      >
+        <fa-icon [icon]="faPlus"></fa-icon>
+      </div>
+
+    </div>
   </div>
   <div class="mt-6">
     <table class="w-full border-collapse border border-gray-200">
@@ -45,6 +54,7 @@
           <td class="border border-gray-200 p-2 space-x-2">
             <div
               class="w-10 h-10 flex justify-center items-center text-white bg-blue-500 rounded-md cursor-pointer"
+              (click)="isModalOpen = true"
             >
               <fa-icon [icon]="faPencil"></fa-icon>
             </div>
@@ -54,3 +64,131 @@
     </table>
   </div>
 </div>
+
+<app-modal [isModalOpen]="isModalOpen" [setCloseModal]="setCloseModal">
+  <form >
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-2xl mx-auto">
+     
+      <div class="grid grid-cols-2 gap-6">
+        <div class="col-span-2 md:col-span-1">
+          <label class="block text-sm font-medium text-gray-600 mb-2">Nome</label>
+          <input
+            type="text"
+            class="border border-gray-300 rounded-lg p-3 w-full"
+            placeholder="Nome"
+          />
+        </div>
+
+        <div class="col-span-2 md:col-span-1">
+          <label class="block text-sm font-medium text-gray-600 mb-2">E-mail</label>
+          <input
+            type="text"
+            class="border border-gray-300 rounded-lg p-3 w-full"
+            placeholder="E-mail"
+          />
+        </div>
+
+        <div class="col-span-2 md:col-span-1">
+          <label class="block text-sm font-medium text-gray-600 mb-2">Status</label>
+          <select class="border border-gray-300 rounded-lg p-3 w-full">
+            <option value="">Selecione</option>
+            <option value="normal">ativo</option>
+            <option value="editavel">desativado</option>
+          </select>
+        </div>
+
+
+        <div class="col-span-2 md:col-span-1">
+          <label class="block text-sm font-medium text-gray-600 mb-2">Função</label>
+          <select class="border border-gray-300 rounded-lg p-3 w-full">
+            <option value="">Selecione</option>
+            <option value="normal">usuario</option>
+            <option value="editavel">administrador</option>
+          </select>
+        </div>
+
+
+       
+        <!-- <div class="col-span-2 md:col-span-1">
+          <label class="block text-sm font-medium text-gray-600 mb-2">Imagem</label>
+          <div class="relative">
+            <input type="file" id="file-upload" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" (change)="onFileSelected($event)" />
+            <label
+              for="file-upload"
+              class="flex items-center justify-center border border-gray-300 rounded-lg p-3 w-full cursor-pointer text-gray-500"
+            >
+              Selecione um arquivo
+            </label>
+          </div>
+        </div> -->
+      </div>
+      
+      <div class="flex justify-end space-x-4 mt-6">
+        <button class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600" (click)="setCloseModal()">Cancelar</button>
+        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600" >
+          <span>Atualizar</span>
+        </button>
+      </div>
+    </div>
+  </form>
+</app-modal>
+
+<app-modal [isModalCreateUserOpen]="isModalCreateUserOpen">
+  <form [formGroup]="userForm">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-2xl mx-auto">
+     
+      <div class="grid grid-cols-2 gap-6">
+        <div class="col-span-2 md:col-span-1">
+          <label class="block text-sm font-medium text-gray-600 mb-2">Nome</label>
+          <input
+            type="text"
+            class="border border-gray-300 rounded-lg p-3 w-full"
+            placeholder="Nome"
+            formControlName="name"
+          />
+        </div>
+
+        <div class="col-span-2 md:col-span-1">
+          <label class="block text-sm font-medium text-gray-600 mb-2">E-mail</label>
+          <input
+            type="text"
+            class="border border-gray-300 rounded-lg p-3 w-full"
+            placeholder="E-mail"
+            formControlName="email"
+          />
+        </div>
+
+        <div class="col-span-2 md:col-span-1">
+          <label class="block text-sm font-medium text-gray-600 mb-2">Senha</label>
+          <input
+            type="text"
+            class="border border-gray-300 rounded-lg p-3 w-full"
+            placeholder="Senha"
+            formControlName="password"
+          />
+        </div>
+
+       
+        <!-- <div class="col-span-2 md:col-span-1">
+          <label class="block text-sm font-medium text-gray-600 mb-2">Imagem</label>
+          <div class="relative">
+            <input type="file" id="file-upload" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" (change)="onFileSelected($event)" />
+            <label
+              for="file-upload"
+              class="flex items-center justify-center border border-gray-300 rounded-lg p-3 w-full cursor-pointer text-gray-500"
+            >
+              Selecione um arquivo
+            </label>
+          </div>
+        </div> -->
+      </div>
+      
+      <div class="flex justify-end space-x-4 mt-6">
+        <button class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600" (click)="setCloseModalCreateUser()">Cancelar</button>
+        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600" (click)="register()">
+          <span>Cadastrar</span>
+        </button>
+      </div>
+    </div>
+  </form>
+</app-modal>

@@ -10,5 +10,6 @@ import { Component, Input } from '@angular/core';
 })
 export class ModalComponent {
   @Input() isModalOpen!: boolean
+  @Input() isModalCreateUserOpen!: boolean
   @Input() setCloseModal!: () => void
 }

@@ -1,4 +1,4 @@
-<div *ngIf="isModalOpen === true; else modalClosed">
+<div *ngIf="isModalOpen || isModalCreateUserOpen === true; else modalClosed">
     <div class="absolute h-full w-full top-0 left-0 flex justify-center items-center">
       <div class="z-10 p-5 bg-white border rounded-md shadow-md">
         <ng-content></ng-content>

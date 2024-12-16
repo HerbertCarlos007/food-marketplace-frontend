@@ -98,6 +98,13 @@ export class LoginComponent {
   }
 
   register() {
+    const storeId = this.loginService.getStoreId();
+
+    if (!storeId) {
+      console.error('Store ID não encontrado!');
+      return;
+    }
+
     if (this.registerForm.invalid) {
       return;
     }
@@ -105,6 +112,9 @@ export class LoginComponent {
     const user: User = {
       name: this.registerForm.get('name')?.value,
       email: this.registerForm.get('email')?.value,
+      role: 'usuario',
+      status: 'ativo',
+      storeId: storeId,
       password: this.registerForm.get('password')?.value,
     };
     this.loginService.register(user);

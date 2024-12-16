@@ -4,6 +4,7 @@ export interface User {
     email?: string,
     password?: string
     token?: string
+    storeId?: string
     role?: string
     status?: string
 }
