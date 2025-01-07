@@ -14,4 +14,14 @@ export class HomeComponent {
 
   searchProduct: string = ''
 
+  ngOnInit() {
+    this.setSecondaryColorFromLocalStorage();
+  }
+
+  setSecondaryColorFromLocalStorage() {
+    const customFields = JSON.parse(localStorage.getItem('customFields') || '');
+    const secondaryColor = customFields[0]?.secondary_color;
+    document.documentElement.style.setProperty('--secondary-color', secondaryColor);
+  }
+
 }

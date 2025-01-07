@@ -31,6 +31,23 @@ export class AppearanceComponent {
     })
   }
 
+  ngOnInit(): void {
+    this.getCustomFields()
+  }
+
+  getCustomFields() {
+    const savedFields = JSON.parse(localStorage.getItem('customFields') || '[]')
+    if (savedFields && savedFields.length > 0) {
+      const customField = savedFields[0];
+      this.customFieldForm.patchValue({
+        name: customField.name,
+        primary_color: customField.primary_color,
+        secondary_color: customField.secondary_color,
+        font_name: customField.font_name
+      });
+    }
+  }
+
   onFileSelected(event: any) {
     const file = event.target.files[0];
     this.logoUrl = file;

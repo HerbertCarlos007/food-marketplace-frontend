@@ -2,7 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+.bg-primary {
+  background-color: var(--primary-color);
+}
 
+.bg-secondary {
+    background-color: var(--secondary-color);
+  }
+  
 
 * {
     margin: 0;
@@ -12,10 +19,10 @@
     overflow-y: hidden;
 }
 
-/* Para ocultar a barra de rolagem padrão */
+
 .scrollbar-hidden {
-    scrollbar-width: thin; /* Para navegadores Firefox */
-    scrollbar-color: transparent transparent; /* Para navegadores Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent; 
 }
 
 
