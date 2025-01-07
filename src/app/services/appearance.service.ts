@@ -22,6 +22,16 @@ export class AppearanceService {
     });
   }
 
+  update(formData: FormData, id: string) {
+    const apiUrl = `${this.baseApiUrl}api/customField/${id}`;
+        return this.http.put<CustomField>(apiUrl, formData).subscribe({
+          next: (response) => {},
+          error: (error) => {
+            console.error('register failed:', error);
+          },
+        });
+  }
+
   getCustomFields(storeId: string): Observable<CustomField[]> {
     const apiUrl = `${this.baseApiUrl}api/customField/${storeId}`
     return this.http.get<CustomField[]>(apiUrl).pipe(

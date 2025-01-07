@@ -17,10 +17,13 @@ export class AppearanceComponent {
 
   customFields: CustomField[] = []
   customFieldForm: FormGroup
+  customFieldId: string = ''
 
   logoUrl: File | null = null;
 
   alert = new AlertComponent();
+
+  isEditMode: boolean = false
 
   constructor(private appearanceService: AppearanceService, private loginService: LoginService,private fb: FormBuilder) {
     this.customFieldForm = fb.group({
@@ -38,7 +41,9 @@ export class AppearanceComponent {
   getCustomFields() {
     const savedFields = JSON.parse(localStorage.getItem('customFields') || '[]')
     if (savedFields && savedFields.length > 0) {
+      this.isEditMode = true
       const customField = savedFields[0];
+      this.customFieldId = customField.id; 
       this.customFieldForm.patchValue({
         name: customField.name,
         primary_color: customField.primary_color,
@@ -61,7 +66,22 @@ export class AppearanceComponent {
       return;
     }
 
-    if (this.customFieldForm.invalid, !this.logoUrl) {
+    const formData = new FormData()
+    formData.append('name', this.customFieldForm.get('name')?.value)
+    formData.append('primary_color', this.customFieldForm.get('primary_color')?.value)
+    formData.append('secondary_color', this.customFieldForm.get('secondary_color')?.value)
+    if (this.logoUrl) formData.append('logoUrl', this.logoUrl)
+    formData.append('font_name', this.customFieldForm.get('font_name')?.value)
+    formData.append('storeId', storeId);
+    this.appearanceService.create(formData)
+    this.alert.showAlert('Campo adicionado com sucesso', 'success')
+  }
+
+  updateStore() {
+    const storeId = this.loginService.getStoreId()
+
+    if (!storeId) {
+      console.error('Store ID não encontrado!');
       return;
     }
 
@@ -69,11 +89,10 @@ export class AppearanceComponent {
     formData.append('name', this.customFieldForm.get('name')?.value)
     formData.append('primary_color', this.customFieldForm.get('primary_color')?.value)
     formData.append('secondary_color', this.customFieldForm.get('secondary_color')?.value)
-    formData.append('logoUrl', this.logoUrl)
+    if (this.logoUrl) formData.append('logoUrl', this.logoUrl)
     formData.append('font_name', this.customFieldForm.get('font_name')?.value)
     formData.append('storeId', storeId);
-    this.appearanceService.create(formData)
-    console.log('ola')
-    this.alert.showAlert('Campo adicionado com sucesso', 'success')
+    this.appearanceService.update(formData, this.customFieldId)
+    this.alert.showAlert('Loja editada com sucesso', 'success')
   }
 }
