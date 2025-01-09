@@ -16,11 +16,14 @@ export class SidebarComponent {
   faChevronRight = faChevronRight;
   categories: Category[] = [];
 
+  storeName: string = ''
+  logoUrl: string = ''
+
   constructor(private categoryService: CategoriesService) {}
 
   ngOnInit(): void {
     this.getAllCategories();
-    this.setPrimaryColorFromLocalStorage();
+    this.getCustomFieldsFromLocalStorage();
   }
 
   getAllCategories() {
@@ -34,9 +37,12 @@ export class SidebarComponent {
     });
   }
 
-  setPrimaryColorFromLocalStorage() {
+  getCustomFieldsFromLocalStorage() {
     const customFields = JSON.parse(localStorage.getItem('customFields') || '');
     const primaryColor = customFields[0]?.primary_color;
     document.documentElement.style.setProperty('--primary-color', primaryColor);
+    this.storeName = customFields[0].name
+    this.logoUrl = customFields[0].logoUrl
   }
+
 }
