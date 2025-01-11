@@ -54,7 +54,7 @@
           <td class="border border-gray-200 p-2 space-x-2">
             <div
               class="w-10 h-10 flex justify-center items-center text-white bg-blue-500 rounded-md cursor-pointer"
-              (click)="isModalOpen = true"
+              (click)="setOpenModal(user)"
             >
               <fa-icon [icon]="faPencil"></fa-icon>
             </div>
@@ -66,7 +66,7 @@
 </div>
 
 <app-modal [isModalOpen]="isModalOpen" [setCloseModal]="setCloseModal">
-  <form >
+  <form [formGroup]="userForm">
     <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-2xl mx-auto">
      
       <div class="grid grid-cols-2 gap-6">
@@ -76,6 +76,7 @@
             type="text"
             class="border border-gray-300 rounded-lg p-3 w-full"
             placeholder="Nome"
+            formControlName="name"
           />
         </div>
 
@@ -85,25 +86,26 @@
             type="text"
             class="border border-gray-300 rounded-lg p-3 w-full"
             placeholder="E-mail"
+            formControlName="email"
           />
         </div>
 
         <div class="col-span-2 md:col-span-1">
           <label class="block text-sm font-medium text-gray-600 mb-2">Status</label>
-          <select class="border border-gray-300 rounded-lg p-3 w-full">
+          <select class="border border-gray-300 rounded-lg p-3 w-full" formControlName="status">
             <option value="">Selecione</option>
-            <option value="normal">ativo</option>
-            <option value="editavel">desativado</option>
+            <option value="ativo">ativo</option>
+            <option value="desativado">desativado</option>
           </select>
         </div>
 
 
         <div class="col-span-2 md:col-span-1">
           <label class="block text-sm font-medium text-gray-600 mb-2">Função</label>
-          <select class="border border-gray-300 rounded-lg p-3 w-full">
+          <select class="border border-gray-300 rounded-lg p-3 w-full" formControlName="role">
             <option value="">Selecione</option>
-            <option value="normal">usuario</option>
-            <option value="editavel">administrador</option>
+            <option value="usuario">usuario</option>
+            <option value="administrador">administrador</option>
           </select>
         </div>
 
@@ -125,7 +127,7 @@
       
       <div class="flex justify-end space-x-4 mt-6">
         <button class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600" (click)="setCloseModal()">Cancelar</button>
-        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600" >
+        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600" (click)="update()">
           <span>Atualizar</span>
         </button>
       </div>
