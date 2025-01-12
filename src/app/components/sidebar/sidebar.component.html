@@ -1,5 +1,5 @@
 <div class="h-screen">
-  <div class="w-85 h-full bg-primary border-r-2">
+  <div class="w-85 h-full bg-primary">
     <div class="flex justify-center my-5">
         <img class="w-20 h-20 bg-cover rounded-full" 
         [src]="logoUrl"
@@ -15,7 +15,7 @@
       <span>$ Sem pedido minimo</span>
     </div>
     <div class="w-85 h-full fixed" >
-      <div class="w-full h-12 border-t-2 mt-3 flex items-center font-bold last:border-b-2 cursor-pointer" *ngFor="let category of categories">
+      <div class="w-full h-12 mt-3 flex items-center font-bold cursor-pointer" *ngFor="let category of categories">
         <span class="ml-4">{{category.name}}</span>
       </div>
     </div>

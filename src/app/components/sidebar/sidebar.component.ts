@@ -40,7 +40,7 @@ export class SidebarComponent {
   getCustomFieldsFromLocalStorage() {
     const customFields = JSON.parse(localStorage.getItem('customFields') || '');
     const primaryColor = customFields[0]?.primary_color;
-    document.documentElement.style.setProperty('--primary-color', primaryColor);
+    document.documentElement.style.setProperty('--primary-color', primaryColor || '#f6f6f6');
     this.storeName = customFields[0].name
     this.logoUrl = customFields[0].logoUrl
   }
