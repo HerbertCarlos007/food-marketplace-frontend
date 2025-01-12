@@ -18,6 +18,7 @@ export class SidebarComponent {
 
   storeName: string = ''
   logoUrl: string = ''
+  fontName: string = ''
 
   constructor(private categoryService: CategoriesService) {}
 
@@ -43,6 +44,8 @@ export class SidebarComponent {
     document.documentElement.style.setProperty('--primary-color', primaryColor || '#f6f6f6');
     this.storeName = customFields[0].name
     this.logoUrl = customFields[0].logoUrl
+    this.fontName = customFields[0].font_name
   }
+
 
 }
