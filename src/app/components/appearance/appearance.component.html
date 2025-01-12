@@ -1,48 +1,80 @@
-<body class="mt-6">
-    <div class="min-h-screen flex flex-col">
-      <header>
-        <div class="container mx-auto px-4">
-          <h1 class="text-3xl">Configuração de Aparência</h1>
+<body class="h-full w-full bg-gray-100 flex items-center justify-center">
+  <div class="w-full h-full bg-white overflow-hidden">
+    <header class="bg-gradient-to-r from-purple-500 to-indigo-500 p-[21px]">
+      <div class="text-center">
+        <h1 class="text-4xl font-semibold text-white py-3">Configuração de Aparência</h1>
+      </div>
+    </header>
+
+    <main class="p-10 h-full">
+      <form class="space-y-8 h-full" [formGroup]="customFieldForm">
+        <div>
+          <label for="store-name" class="block text-lg font-medium text-gray-600">Nome da Loja</label>
+          <input
+            type="text"
+            id="store-name"
+            class="w-full mt-2 p-4 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500"
+            placeholder="Digite o nome da loja"
+            formControlName="name"
+          />
         </div>
-      </header>
-  
-      <main class="flex-grow container mx-auto px-4 py-8">
-        <form class="bg-white rounded shadow p-6 space-y-6" [formGroup]="customFieldForm">
-          <div>
-            <label for="store-name" class="block text-gray-700 font-medium">Nome da Loja</label>
-            <input type="text" id="store-name" class="w-full mt-2 p-2 border rounded" placeholder="Digite o nome da loja"  formControlName="name">
+        <div>
+          <label for="primary-color" class="block text-lg font-medium text-gray-600">Cor Primária</label>
+          <input
+            type="color"
+            id="primary-color"
+            class="w-16 h-12 mt-2 border border-gray-300 rounded-lg cursor-pointer"
+            formControlName="primary_color"
+          />-
+        </div>
+        <div>
+          <label for="secondary-color" class="block text-lg font-medium text-gray-600">Cor Secundária</label>
+          <input
+            type="color"
+            id="secondary-color"
+            class="w-16 h-12 mt-2 border border-gray-300 rounded-lg cursor-pointer"
+            formControlName="secondary_color"
+          />
+        </div>
+        <div>
+          <label for="font-family" class="block text-lg font-medium text-gray-600">Fonte</label>
+          <select
+            id="font-family"
+            class="w-full mt-2 p-4 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500"
+            formControlName="font_name"
+          >
+            <option value="sans-serif">Sans-serif</option>
+            <option value="serif">Serif</option>
+            <option value="monospace">Monospace</option>
+          </select>
+        </div>
+        <div>
+          <label for="logo-upload" class="block text-lg font-medium text-gray-600">Logo da Loja</label>
+          <div class="mt-2">
+            <label for="logo-upload" class="w-full flex items-center justify-center px-4 py-2 bg-indigo-500 text-white rounded-lg shadow-lg cursor-pointer hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+              <span class="mr-3">Escolher Logo</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 10l5 5 5-5H7z"/>
+              </svg>
+            </label>
+            <input
+              type="file"
+              id="logo-upload"
+              class="hidden"
+              (change)="onFileSelected($event)"
+              accept="image/*"
+            />
           </div>
-
-          <div>
-            <label for="primary-color" class="block text-gray-700 font-medium">Cor Primária</label>
-            <input type="color" id="primary-color" class="w-16 h-10 mt-2 border rounded"  formControlName="primary_color">
-          </div>
-  
-          <div>
-            <label for="secondary-color" class="block text-gray-700 font-medium">Cor Secundária</label>
-            <input type="color" id="secondary-color" class="w-16 h-10 mt-2 border rounded" formControlName="secondary_color">
-          </div>
-  
-          <div>
-            <label for="font-family" class="block text-gray-700 font-medium">Fonte</label>
-            <select id="font-family" class="w-full mt-2 p-2 border rounded" formControlName="font_name">
-              <option value="sans-serif">Sans-serif</option>
-              <option value="serif">Serif</option>
-              <option value="monospace">Monospace</option>
-            </select>
-          </div>
-
-          <div>
-            <label for="logo-upload" class="block text-gray-700 font-medium">Logo da Loja</label>
-            <input type="file" id="logo-upload" class="mt-2" (change)="onFileSelected($event)">
-          </div>
-  
-          <div class="text-right" >
-            <button class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700" (click)="isEditMode ? updateStore() : create()">
-              {{isEditMode ? 'Editar Configurações' : 'Salvar Configurações'}}
-            </button>
-          </div>
-        </form>
-      </main>
-    </div>
-  </body>
+        </div>
+        <div class="text-right">
+          <button
+            class="bg-indigo-500 text-white py-3 px-6 rounded-lg shadow-lg hover:bg-indigo-600 transition duration-300"
+            (click)="isEditMode ? updateStore() : create()"
+          >
+            {{ isEditMode ? 'Editar Configurações' : 'Salvar Configurações' }}
+          </button>
+        </div>
+      </form>
+    </main>
+  </div>
+</body>
