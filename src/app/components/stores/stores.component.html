@@ -19,80 +19,14 @@
 <section class="w-full h-screen mt-9">
     <div class="w-4/5 mx-auto">
       <div class="w-full grid grid-cols-4 gap-6">
-        <div class="w-full flex items-center overflow-hidden hover:scale-90 transition-transform duration-300 hover:bg-white hover:shadow-lg hover:border hover:border-gray-300 rounded-lg">
+        <div *ngFor="let store of stores" class="w-full flex items-center overflow-hidden hover:scale-90 transition-transform duration-300 hover:bg-white hover:shadow-lg hover:border hover:border-gray-300 rounded-lg">
           <section>
-            <img src="logo.png" alt="" class="w-32 h-32">
+            <img [src]="store.imageUrl" alt="" class="w-32 h-32">
           </section>
           <section class="flex flex-col">
-            <label class="font-semibold">La Pampa Gaucha Ltda</label>
+            <label class="font-semibold">{{store.name}}</label>
           </section>
         </div>
-  
-        <div class="w-full flex items-center overflow-hidden hover:scale-90 transition-transform duration-300 hover:bg-white hover:shadow-lg hover:border hover:border-gray-300 rounded-lg">
-          <section>
-            <img src="logo.png" alt="" class="w-32 h-32">
-          </section>
-          <section class="flex flex-col">
-            <label class="font-semibold">La Pampa Gaucha Ltda</label>
-          </section>
-        </div>
-
-        <div class="w-full flex items-center overflow-hidden hover:scale-90 transition-transform duration-300 hover:bg-white hover:shadow-lg hover:border hover:border-gray-300 rounded-lg">
-            <section>
-              <img src="logo.png" alt="" class="w-32 h-32">
-            </section>
-            <section class="flex flex-col">
-              <label class="font-semibold">La Pampa Gaucha Ltda</label>
-            </section>
-          </div>
-
-          <div class="w-full flex items-center overflow-hidden hover:scale-90 transition-transform duration-300 hover:bg-white hover:shadow-lg hover:border hover:border-gray-300 rounded-lg">
-            <section>
-              <img src="logo.png" alt="" class="w-32 h-32">
-            </section>
-            <section class="flex flex-col">
-              <label class="font-semibold">La Pampa Gaucha Ltda</label>
-            </section>
-          </div>
-
-          <div class="w-full flex items-center overflow-hidden hover:scale-90 transition-transform duration-300 hover:bg-white hover:shadow-lg hover:border hover:border-gray-300 rounded-lg">
-            <section>
-              <img src="logo.png" alt="" class="w-32 h-32">
-            </section>
-            <section class="flex flex-col">
-              <label class="font-semibold">La Pampa Gaucha Ltda</label>
-            </section>
-          </div>
-
-          <div class="w-full flex items-center overflow-hidden hover:scale-90 transition-transform duration-300 hover:bg-white hover:shadow-lg hover:border hover:border-gray-300 rounded-lg">
-            <section>
-              <img src="logo.png" alt="" class="w-32 h-32">
-            </section>
-            <section class="flex flex-col">
-              <label class="font-semibold">La Pampa Gaucha Ltda</label>
-            </section>
-          </div>
-
-          <div class="w-full flex items-center overflow-hidden hover:scale-90 transition-transform duration-300 hover:bg-white hover:shadow-lg hover:border hover:border-gray-300 rounded-lg">
-            <section>
-              <img src="logo.png" alt="" class="w-32 h-32">
-            </section>
-            <section class="flex flex-col">
-              <label class="font-semibold">La Pampa Gaucha Ltda</label>
-            </section>
-          </div>
-
-          <div class="w-full flex items-center overflow-hidden hover:scale-90 transition-transform duration-300 hover:bg-white hover:shadow-lg hover:border hover:border-gray-300 rounded-lg">
-            <section>
-              <img src="logo.png" alt="" class="w-32 h-32">
-            </section>
-            <section class="flex flex-col">
-              <label class="font-semibold">La Pampa Gaucha Ltda</label>
-            </section>
-          </div>
-          
-  
-        <!-- Continue com o mesmo padrão para os outros itens -->
       </div>
     </div>
   </section>
