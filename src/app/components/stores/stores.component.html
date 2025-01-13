@@ -19,7 +19,7 @@
 <section class="w-full h-screen mt-9">
     <div class="w-4/5 mx-auto">
       <div class="w-full grid grid-cols-4 gap-6">
-        <div *ngFor="let store of stores" class="w-full flex items-center overflow-hidden hover:scale-90 transition-transform duration-300 hover:bg-white hover:shadow-lg hover:border hover:border-gray-300 rounded-lg">
+        <div *ngFor="let store of stores" (click)="navigateToStoreSelected(store)" class="w-full flex items-center overflow-hidden hover:scale-90 transition-transform duration-300 hover:bg-white hover:shadow-lg hover:border hover:border-gray-300 rounded-lg">
           <section>
             <img [src]="store.imageUrl" alt="" class="w-32 h-32">
           </section>

@@ -26,8 +26,15 @@ export class StoresComponent {
         this.stores = response;
       },
       error: (error) => {
-        console.error('Erro ao obter lojas:', error);
+        console.error('Erro ao obter lojas:', error)
       },
     });
   }
+
+  navigateToStoreSelected(store: Store): void {
+    const subdomain = store.subdomain.trim()
+    const url = `http://${subdomain}.localhost:4200`
+    window.location.href = url
+  }
+  
 }
