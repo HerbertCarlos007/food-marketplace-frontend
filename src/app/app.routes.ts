@@ -8,8 +8,8 @@ import { CartComponent } from './components/cart/cart.component';
 import { StoresComponent } from './components/stores/stores.component';
 
 export const routes: Routes = [
-    {path: '', component: LoginComponent},
-    {path: 'stores', component: StoresComponent},
+    {path: '', component: StoresComponent},
+    {path: 'login', component: LoginComponent},
     {path: 'home', component: HomeComponent},
     {path: 'configuration', component: ConfigurationComponent, canActivate: [AuthGuard]},
     {path: 'unauthorized', component: UnauthorizedComponent},
