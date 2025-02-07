@@ -33,7 +33,7 @@ export class StoresComponent {
 
   navigateToStoreSelected(store: Store): void {
     const subdomain = store.subdomain.trim()
-    const url = `http://${subdomain}.localhost:4200`
+    const url = `http://${subdomain}.localhost:4200/login`
     window.location.href = url
   }
   
