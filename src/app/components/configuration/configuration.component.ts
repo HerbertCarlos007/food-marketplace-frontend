@@ -5,11 +5,12 @@ import { CommonModule } from '@angular/common';
 import { UsersComponent } from '../users/users.component';
 import { CategoriesComponent } from "../categories/categories.component";
 import { AppearanceComponent } from '../appearance/appearance.component';
+import { DashboardComponent } from "../dashboard/dashboard.component";
 
 @Component({
   selector: 'app-configuration',
   standalone: true,
-  imports: [CommonModule, ConfigurationSidebarComponent, ProductManagementComponent, UsersComponent, CategoriesComponent, CategoriesComponent, AppearanceComponent],
+  imports: [CommonModule, ConfigurationSidebarComponent, ProductManagementComponent, UsersComponent, CategoriesComponent, CategoriesComponent, AppearanceComponent, DashboardComponent, DashboardComponent],
   templateUrl: './configuration.component.html',
   styleUrl: './configuration.component.css'
 })
