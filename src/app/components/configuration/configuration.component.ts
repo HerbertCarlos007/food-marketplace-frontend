@@ -15,7 +15,7 @@ import { DashboardComponent } from "../dashboard/dashboard.component";
   styleUrl: './configuration.component.css'
 })
 export class ConfigurationComponent {
-  activeComponent: string = 'products'
+  activeComponent: string = 'sales'
 
   onOptionSelected(option: string) {
     this.activeComponent = option
