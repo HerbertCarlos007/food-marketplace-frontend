@@ -24,7 +24,7 @@ export class SidebarComponent {
 
   ngOnInit(): void {
     this.getAllCategories();
-    this.getCustomFieldsFromLocalStorage();
+    // this.getCustomFieldsFromLocalStorage();
   }
 
   getAllCategories() {

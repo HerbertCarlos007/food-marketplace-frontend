@@ -44,11 +44,6 @@ export class LoginComponent {
   }
 
   ngOnInit() {
-    const subdomain =
-      window.location.hostname.split('.')[0] === 'localhost'
-        ? 'dev'
-        : window.location.hostname.split('.')[0];
-    this.loginService.getBySubdomain(subdomain);
     this.getCustomFields()
   }
 
@@ -91,17 +86,10 @@ export class LoginComponent {
 
   login() {
 
-    const storeId = this.loginService.getStoreId();
-
-    if (!storeId) {
-      console.error('Store ID não encontrado!');
-      return;
-    }
 
     const user: User = {
       email: this.loginForm.get('email')?.value,
       password: this.loginForm.get('password')?.value,
-      storeId: storeId
     };
     this.loginService.login(user);
   }

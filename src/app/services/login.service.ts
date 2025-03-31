@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../interfaces/user';
 import { Store } from '../interfaces/store';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -38,17 +38,15 @@ export class LoginService {
     });
   }
 
-  getBySubdomain(subdomain: string) {
-    const apiUrl = `${this.baseApiUrl}api/store/${subdomain}`
-    this.http.get<Store>(apiUrl).subscribe({
-      next: (data: Store) => {
-       localStorage.setItem('store_id', data.id)
-      },
-      error: (error) => {
-        console.error('Não foi possivel encontrar o subdominio', error)
-      },
-    });
+  getBySubdomain(subdomain: string): Observable<Store> {
+    const apiUrl = `${this.baseApiUrl}api/store/${subdomain}`;
+    return this.http.get<Store>(apiUrl).pipe(
+      tap((data: Store) => {
+        localStorage.setItem('store_id', data.id);
+      })
+    );
   }
+  
 
   logout() {
     localStorage.clear();

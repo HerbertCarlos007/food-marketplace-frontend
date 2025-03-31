@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { HeaderComponent } from '../header/header.component';
 import { ProductsComponent } from '../products/products.component';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-home',
@@ -14,8 +15,17 @@ export class HomeComponent {
 
   searchProduct: string = ''
 
+   constructor(private loginService: LoginService) {
+    
+    }
+
   ngOnInit() {
-    this.setSecondaryColorFromLocalStorage();
+    // const subdomain =
+    //   window.location.hostname.split('.')[0] === 'localhost'
+    //     ? 'dev'
+    //     : window.location.hostname.split('.')[0];
+    // this.loginService.getBySubdomain(subdomain);
+    // this.setSecondaryColorFromLocalStorage();
   }
 
   setSecondaryColorFromLocalStorage() {

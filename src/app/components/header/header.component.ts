@@ -36,7 +36,7 @@ export class HeaderComponent {
 
   constructor(private userService: UsersService, private loginService: LoginService,  private router: Router) {
     this.role = this.userService.getUserRole();
-    this.setPrimaryColorFromLocalStorage();
+    // this.setPrimaryColorFromLocalStorage();
   }
 
   logout() {
@@ -47,10 +47,10 @@ export class HeaderComponent {
     this.router.navigate(['/cart'])
   }
 
-  setPrimaryColorFromLocalStorage() {
-    const customFields = JSON.parse(localStorage.getItem('customFields') || '');
-    const primaryColor = customFields[0]?.primary_color;
-    document.documentElement.style.setProperty('--primary-color', primaryColor);
-  }
+    setPrimaryColorFromLocalStorage() {
+      const customFields = JSON.parse(localStorage.getItem('customFields') || '');
+      const primaryColor = customFields[0]?.primary_color;
+      document.documentElement.style.setProperty('--primary-color', primaryColor);
+    }
 
 }
