@@ -1,6 +1,6 @@
-<div class="w-full h-full flex bg-secondary">
+<div class="w-full h-full flex ">
   <app-sidebar ></app-sidebar>
-  <div class="flex-1">
+  <div class="flex-1 bg-zinc-300">
     <app-header (searchProductChange)="searchProduct = $event"></app-header>
     <app-products [searchProduct]="searchProduct"></app-products>
   </div>

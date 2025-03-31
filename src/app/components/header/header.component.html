@@ -1,4 +1,4 @@
-<div class="w-full h-20 bg-primary flex">
+<div class="w-full h-20 bg-slate-800 flex">
   <div class="w-full flex ml-5 gap- items-center">
     <input
       class="w-8/12 h-11 border-2 rounded-lg px-4"
@@ -7,16 +7,16 @@
       (input)="search($event)"
     />
     <div class="w-1/3 flex justify-around mr-5">
-      <span class="cursor-pointer flex items-center gap-1">
+      <span class="cursor-pointer flex items-center gap-1 text-white">
         <fa-icon [icon]="faHouse"></fa-icon>
         Início
       </span>
-      <span class="cursor-pointer flex items-center gap-1"  (click)="navigateToCart()">
+      <span class="cursor-pointer flex items-center gap-1 text-white"  (click)="navigateToCart()">
         <fa-icon [icon]="faCartShopping"></fa-icon>
         Carrinho
       </span>
       <ng-container *ngIf="role === 'administrador'; else user">
-        <a class="cursor-pointer flex items-center gap-1" [routerLink]="['/configuration']">
+        <a class="cursor-pointer flex items-center gap-1 text-white" [routerLink]="['/configuration']">
           <fa-icon [icon]="faGear"></fa-icon>
           Configurações
         </a>
@@ -26,7 +26,7 @@
 </div>
 
 <ng-template #user>
-  <div class="cursor-pointer flex items-center gap-1" (click)="logout()">
+  <div class="cursor-pointer flex items-center gap-1 text-white" (click)="logout()">
     <fa-icon [icon]="faRightFromBracket"></fa-icon>
     Sair
   </div>

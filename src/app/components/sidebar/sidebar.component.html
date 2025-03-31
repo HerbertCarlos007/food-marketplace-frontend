@@ -1,21 +1,21 @@
 <div class="h-screen" [style.font-family]="fontName">
-  <div class="w-85 h-full bg-primary">
+  <div class="w-85 h-full bg-slate-800">
     <div class="flex justify-center my-5">
         <img class="w-20 h-20 bg-cover rounded-full" 
-        [src]="logoUrl"  
+        [src]="logoUrl || 'https://img.freepik.com/vetores-premium/logotipo-do-restaurante-em-preto-colher-garfo-e-faca-vetor-em-fundo-branco-isolado-eps-10_399089-1266.jpg'"  
         alt="">
     </div>
     <div class="w-full h-11 flex justify-between cursor-pointer">
       <h1 class="text-3xl ml-4">{{storeName}}</h1>
-      <span class="mr-4 text-2xl">
+      <span class="mr-4 text-2xl text-white">
         <fa-icon [icon]="faChevronRight"></fa-icon>
       </span>
     </div>
     <div class="ml-4">
-      <span>$ Sem pedido minimo</span>
+      <span class="text-white">$ Sem pedido minimo</span>
     </div>
     <div class="w-85 h-full fixed" >
-      <div class="w-full h-12 mt-3 flex items-center font-bold cursor-pointer" *ngFor="let category of categories">
+      <div class="w-full h-12 mt-3 flex items-center font-bold cursor-pointer text-white" *ngFor="let category of categories">
         <span class="ml-4">{{category.name}}</span>
       </div>
     </div>
