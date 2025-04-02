@@ -44,11 +44,27 @@ export class LoginComponent {
   }
 
   ngOnInit() {
-    this.getCustomFields()
+    this.getStoreIdBySubdomain();
+    this.getCustomFields();
   }
 
   changeForm() {
     this.isLoginForm = !this.isLoginForm;
+  }
+
+  getStoreIdBySubdomain() {
+    const subdomain =
+      window.location.hostname.split('.')[0] === 'localhost'
+        ? 'dev'
+        : window.location.hostname.split('.')[0];
+    this.loginService.getBySubdomain(subdomain).subscribe({
+      next: (store) => {
+        localStorage.setItem('store_id', store.id);
+      },
+      error: (error) => {
+        console.error('Erro ao buscar Store pelo subdomínio', error);
+      },
+    });
   }
 
   getErrorLoginForm(controlName: string): string | null {
@@ -85,8 +101,6 @@ export class LoginComponent {
   }
 
   login() {
-
-
     const user: User = {
       email: this.loginForm.get('email')?.value,
       password: this.loginForm.get('password')?.value,

@@ -18,9 +18,15 @@ export class LoginService {
     const apiUrl = `${this.baseApiUrl}auth/login`;
     return this.http.post<User>(apiUrl, user).subscribe({
       next: (response) => {
+        const data = response
         localStorage.setItem('token', String(response.token));
         localStorage.setItem('role', String(response.role));
-        this.router.navigate(['/home'])
+        
+        if (data.role === 'administrador') {
+          this.router.navigate(['/home'])
+        }else {
+          this.router.navigate(['/'])
+        }
       },
       error: (error) => {
         console.error('Login failed:', error);
@@ -47,7 +53,6 @@ export class LoginService {
     );
   }
   
-
   logout() {
     localStorage.clear();
     this.router.navigate(['/'])
