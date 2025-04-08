@@ -6,10 +6,12 @@ import { AuthGuard } from './guards/auth.guard';
 import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
 import { CartComponent } from './components/cart/cart.component';
 import { StoresComponent } from './components/stores/stores.component';
+import { CreateStoreComponent } from './components/create-store/create-store.component';
 
 export const routes: Routes = [
     {path: '', component: StoresComponent},
     {path: 'login', component: LoginComponent},
+    {path: 'create-store', component: CreateStoreComponent},
     {path: 'home', component: HomeComponent},
     {path: 'configuration', component: ConfigurationComponent, canActivate: [AuthGuard]},
     {path: 'unauthorized', component: UnauthorizedComponent},

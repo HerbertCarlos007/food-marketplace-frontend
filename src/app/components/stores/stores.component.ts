@@ -3,6 +3,7 @@ import { StoreService } from '../../services/store.service';
 import { Store } from '../../interfaces/store';
 import { CommonModule } from '@angular/common';
 import { LoginService } from '../../services/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-stores',
@@ -15,7 +16,7 @@ export class StoresComponent {
 
   stores: Store[] = []
   
-  constructor(private storeService: StoreService, private loginService: LoginService) {}
+  constructor(private storeService: StoreService, private loginService: LoginService, private router: Router) {}
 
   ngOnInit(): void {
     this.getAllStores();
@@ -30,6 +31,14 @@ export class StoresComponent {
         console.error('Erro ao obter lojas:', error)
       },
     });
+  }
+
+  navigateToLogin() {
+    this.router.navigate(['/login'])
+  }
+
+  navigateToCreateStore() {
+    this.router.navigate(['/create-store'])
   }
 
   navigateToStoreSelected(store: Store): void {
