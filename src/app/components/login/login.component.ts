@@ -85,8 +85,6 @@ export class LoginComponent {
   }
 
   login() {
-
-
     const user: User = {
       email: this.loginForm.get('email')?.value,
       password: this.loginForm.get('password')?.value,

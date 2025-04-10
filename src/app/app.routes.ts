@@ -7,6 +7,7 @@ import { UnauthorizedComponent } from './components/unauthorized/unauthorized.co
 import { CartComponent } from './components/cart/cart.component';
 import { StoresComponent } from './components/stores/stores.component';
 import { CreateStoreComponent } from './components/create-store/create-store.component';
+import { AdminLoginComponent } from './components/admin-login/admin-login.component';
 
 export const routes: Routes = [
     {path: '', component: StoresComponent},
@@ -15,5 +16,6 @@ export const routes: Routes = [
     {path: 'home', component: HomeComponent},
     {path: 'configuration', component: ConfigurationComponent, canActivate: [AuthGuard]},
     {path: 'unauthorized', component: UnauthorizedComponent},
-    {path: 'cart', component: CartComponent}
+    {path: 'cart', component: CartComponent},
+    {path: 'admin-login', component: AdminLoginComponent}
 ];

@@ -21,6 +21,12 @@ export class LoginService {
         localStorage.setItem('token', String(response.token));
         localStorage.setItem('role', String(response.role));
         this.router.navigate(['/home'])
+
+        if (response.role === 'administrador') {
+          this.router.navigate(['/home'])
+        }else {
+          this.router.navigate(['/'])
+        }
       },
       error: (error) => {
         console.error('Login failed:', error);
