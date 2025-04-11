@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './create-store.component.css'
 })
 export class CreateStoreComponent {
-
+  
 }
