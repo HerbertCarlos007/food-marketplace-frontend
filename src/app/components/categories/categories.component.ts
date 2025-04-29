@@ -7,11 +7,12 @@ import { CommonModule } from '@angular/common';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-categories',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, FontAwesomeModule],
+  imports: [CommonModule, HttpClientModule, FormsModule, ReactiveFormsModule, FontAwesomeModule],
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.css',
 })

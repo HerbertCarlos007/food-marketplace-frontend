@@ -12,11 +12,12 @@ import { User } from '../../interfaces/user';
 import { AppearanceComponent } from '../appearance/appearance.component';
 import { AppearanceService } from '../../services/appearance.service';
 import { CustomField } from '../../interfaces/customField';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, HttpClientModule, FormsModule, ReactiveFormsModule],
   providers: [LoginService],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',

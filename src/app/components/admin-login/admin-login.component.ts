@@ -9,11 +9,12 @@ import {
 import { User } from '../../interfaces/user';
 import { LoginService } from '../../services/login.service';
 import { Store } from '../../interfaces/store';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-admin-login',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, HttpClientModule],
   templateUrl: './admin-login.component.html',
   styleUrl: './admin-login.component.css',
 })

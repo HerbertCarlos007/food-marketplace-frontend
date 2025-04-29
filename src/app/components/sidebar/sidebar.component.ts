@@ -4,11 +4,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CategoriesService } from '../../services/categories.service';
 import { Category } from '../../interfaces/category';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [FontAwesomeModule, CommonModule],
+  imports: [FontAwesomeModule, CommonModule, HttpClientModule],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css',
 })

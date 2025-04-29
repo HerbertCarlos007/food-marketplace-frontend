@@ -8,11 +8,12 @@ import { faDollarSign } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faList } from '@fortawesome/free-solid-svg-icons';
 import { LoginService } from '../../services/login.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-configuration-sidebar',
   standalone: true,
-  imports: [FontAwesomeModule],
+  imports: [FontAwesomeModule, HttpClientModule],
   templateUrl: './configuration-sidebar.component.html',
   styleUrl: './configuration-sidebar.component.css'
 })

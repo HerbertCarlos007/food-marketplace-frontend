@@ -9,11 +9,12 @@ import { faGear } from '@fortawesome/free-solid-svg-icons';
 import { UsersService } from '../../services/users.service';
 import { CommonModule } from '@angular/common';
 import { LoginService } from '../../services/login.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [FontAwesomeModule, RouterModule, CommonModule],
+  imports: [FontAwesomeModule, RouterModule, CommonModule, HttpClientModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })

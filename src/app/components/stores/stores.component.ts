@@ -4,11 +4,12 @@ import { Store } from '../../interfaces/store';
 import { CommonModule } from '@angular/common';
 import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-stores',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, HttpClientModule],
   templateUrl: './stores.component.html',
   styleUrl: './stores.component.css',
 })

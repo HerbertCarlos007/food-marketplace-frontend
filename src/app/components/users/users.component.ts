@@ -14,6 +14,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { LoginService } from '../../services/login.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-users',
@@ -24,6 +25,7 @@ import { LoginService } from '../../services/login.service';
     ModalComponent,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule
   ],
   templateUrl: './users.component.html',
   styleUrl: './users.component.css',

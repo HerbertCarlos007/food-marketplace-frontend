@@ -6,11 +6,12 @@ import { Cart } from '../../interfaces/cart';
 import { CartService } from '../../services/cart.service';
 import { AlertComponent } from '../alert/alert.component';
 import { LoginService } from '../../services/login.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, HttpClientModule],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
 })

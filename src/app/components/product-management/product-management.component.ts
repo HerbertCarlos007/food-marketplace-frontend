@@ -13,11 +13,12 @@ import { CategoriesService } from '../../services/categories.service';
 import { Category } from '../../interfaces/category';
 import { ConfirmationModalComponent } from "../confirmation-modal/confirmation-modal.component";
 import { AlertComponent } from '../alert/alert.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-product-management',
   standalone: true,
-  imports: [CommonModule, FontAwesomeModule, ModalComponent, FormsModule, ReactiveFormsModule, ConfirmationModalComponent],
+  imports: [CommonModule, HttpClientModule, FontAwesomeModule, ModalComponent, FormsModule, ReactiveFormsModule, ConfirmationModalComponent],
   templateUrl: './product-management.component.html',
   styleUrl: './product-management.component.css',
 })

@@ -5,11 +5,12 @@ import { AppearanceService } from '../../services/appearance.service';
 import { LoginService } from '../../services/login.service';
 import { AlertComponent } from '../alert/alert.component';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-appearance',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, HttpClientModule],
   templateUrl: './appearance.component.html',
   styleUrl: './appearance.component.css'
 })
