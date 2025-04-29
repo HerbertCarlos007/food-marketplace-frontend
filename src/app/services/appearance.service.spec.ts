@@ -7,7 +7,7 @@ describe('AppearanceService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule], // ✅ Aqui
+      imports: [HttpClientTestingModule],
       providers: [AppearanceService]
     });
     appearanceService = TestBed.inject(AppearanceService);
