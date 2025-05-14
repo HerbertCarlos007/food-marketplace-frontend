@@ -227,6 +227,9 @@ export class ProductManagementComponent {
         console.error('Erro ao excluir o produto:', err);
       }
     });
+    console.log('olaaaa')
   }
+
+  
   
 }
